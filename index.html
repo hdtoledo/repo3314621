@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-[#F3F6F9] antialiased">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SI Formación ADSO 3314621 | SENA</title>
+  <meta name="description" content="Plataforma de formación técnica para aprendices ADSO Ficha 3314621 - SENA. Competencia: Desarrollar la solución de software de acuerdo con el diseño y metodologías de desarrollo. JavaScript Moderno, Inmutabilidad y Flujo Asíncrono hacia React + Vite.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            sena: {
+              green: '#39A900',
+              'green-light': '#45A824',
+              'green-dark': '#2D8200',
+              'green-soft': '#EAF6E5',
+              navy: '#0F3647',
+              'navy-dark': '#0B2C3D',
+              'navy-deeper': '#071F2C',
+              'navy-light': '#1A4D63',
+              accent: '#00324D',
+              surface: '#F3F6F9'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'Inter', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'Fira Code', 'Consolas', 'monospace']
+          },
+          boxShadow: {
+            'card': '0 2px 10px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02)',
+            'card-hover': '0 12px 28px rgba(15, 54, 71, 0.08), 0 4px 10px rgba(0, 0, 0, 0.03)',
+            'glow-green': '0 0 15px rgba(57, 169, 0, 0.35)',
+            'modal': '0 20px 40px rgba(7, 31, 44, 0.25)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Estilos base SI Contratista SENA */
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    /* Fondo degradado del sidebar inspirado en SI Contratista */
+    .sidebar-gradient {
+      background: linear-gradient(180deg, #0D3344 0%, #092633 45%, #061B24 100%);
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(57, 169, 0, 0.06) 0%, transparent 40%),
+        radial-gradient(circle at 80% 80%, rgba(0, 164, 228, 0.04) 0%, transparent 45%),
+        linear-gradient(180deg, #0D3344 0%, #092633 45%, #061B24 100%);
+    }
+
+    /* Reglas determinísticas de ancho de Sidebar para Desktop */
+    #main-sidebar {
+      width: 16rem; /* 256px expandido */
+      transition: width 0.28s cubic-bezier(0.4, 0, 0.2, 1), transform 0.28s ease;
+    }
+
+    /* Estado compacto en Desktop */
+    #main-sidebar.sidebar-compact {
+      width: 5rem; /* 80px compacto */
+    }
+
+    #main-sidebar.sidebar-compact .sidebar-text,
+    #main-sidebar.sidebar-compact .sidebar-subitems,
+    #main-sidebar.sidebar-compact .sidebar-badge {
+      display: none !important;
+    }
+
+    #main-sidebar.sidebar-compact .nav-btn-wrapper {
+      justify-content: center !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+      width: 3rem !important; /* 48px */
+      height: 3rem !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      border-radius: 0.85rem !important;
+    }
+
+    #main-sidebar.sidebar-compact .logo-area {
+      justify-content: center !important;
+      padding-left: 0 !important;
+      padding-right: 0 !important;
+    }
+
+    /* Comportamiento Responsive Móvil (pantallas < 768px) */
+    @media (max-width: 767px) {
+      #main-sidebar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        transform: translateX(-100%);
+        z-index: 50;
+        box-shadow: 10px 0 25px rgba(0, 0, 0, 0.35);
+      }
+      #main-sidebar.mobile-open {
+        transform: translateX(0);
+      }
+      #sidebar-toggle {
+        display: none !important; /* En móvil se usa el botón hamburguesa */
+      }
+    }
+
+    /* Scrollbars estilizados */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #EAEFF4;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #B4C2CD;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #39A900;
+    }
+
+    /* Animación de cambio de vistas */
+    .view-content {
+      animation: fadeIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body class="h-full flex flex-col text-slate-800 antialiased selection:bg-[#39A900] selection:text-white">
+
+  <!-- Telón de fondo (Backdrop) para móviles cuando el sidebar se abre -->
+  <div id="sidebar-backdrop" onclick="toggleMobileSidebar()" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-40 hidden md:hidden transition-opacity"></div>
+
+  <div class="flex h-screen overflow-hidden bg-[#F3F6F9]">
+
+    <!-- ========================================================================= -->
+    <!-- 1. SIDEBAR LATERAL (RESPONSIVE + COMPACTABLE + SÓLO INICIO Y JAVASCRIPT) -->
+    <!-- ========================================================================= -->
+    <aside id="main-sidebar" class="sidebar-gradient relative flex flex-col justify-between text-white shrink-0 z-30">
+      
+      <!-- Parte Superior del Sidebar -->
+      <div class="flex flex-col flex-1 min-h-0">
+        
+        <!-- Logo SI Formación / SENA -->
+        <div class="h-20 flex items-center px-4 border-b border-white/5 logo-area transition-all">
+          <div class="flex items-center gap-2.5 overflow-hidden mx-auto md:mx-0">
+            <div class="bg-[#45A824] text-white font-black text-sm w-9 h-9 rounded-xl tracking-tight shadow-sm shrink-0 flex items-center justify-center">
+              SI
+            </div>
+            <div class="sidebar-text truncate">
+              <span class="font-extrabold text-base tracking-tight text-white block leading-tight">Formación</span>
+              <span class="text-[9px] font-semibold text-slate-300 uppercase tracking-widest block">ADSO · 3314621</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Menú de Navegación Simplificado -->
+        <nav class="flex-1 px-3 py-5 space-y-2 overflow-y-auto" id="sidebar-nav">
+          
+          <!-- Botón 1: Inicio -->
+          <button onclick="switchView('inicio')" id="nav-btn-inicio" class="nav-btn-wrapper w-full flex items-center gap-3 px-3.5 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 bg-[#45A824] text-white shadow-sm" title="Inicio / Tablero">
+            <i data-lucide="home" class="w-5 h-5 shrink-0"></i>
+            <span class="sidebar-text truncate text-left">Inicio</span>
+          </button>
+
+          <!-- Botón 2: JavaScript (Hub Central con todos los temas relacionados) -->
+          <div class="space-y-1">
+            <button onclick="switchView('javascript')" id="nav-btn-javascript" class="nav-btn-wrapper w-full flex items-center gap-3 px-3.5 py-3 rounded-xl font-medium text-xs sm:text-sm text-slate-300 hover:text-white hover:bg-white/10 transition-all duration-200" title="Módulo JavaScript">
+              <i data-lucide="code-2" class="w-5 h-5 shrink-0 text-amber-400"></i>
+              <span class="sidebar-text truncate text-left flex-1">JavaScript</span>
+              <span class="sidebar-badge text-[9px] font-extrabold px-1.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">ES6+</span>
+            </button>
+
+            <!-- Submenús rápidos cuando el sidebar está expandido -->
+            <div class="sidebar-subitems pl-9 pr-1 py-1 space-y-1 text-[11px] font-medium text-slate-300/90">
+              <button onclick="switchView('javascript', 'es6')" class="w-full text-left py-1 px-2 rounded-lg hover:text-white hover:bg-white/5 transition flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                <span class="truncate">1. ES6+ Moderno</span>
+              </button>
+              <button onclick="switchView('javascript', 'inmutabilidad')" class="w-full text-left py-1 px-2 rounded-lg hover:text-white hover:bg-white/5 transition flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span class="truncate">2. Inmutabilidad</span>
+              </button>
+              <button onclick="switchView('javascript', 'async')" class="w-full text-left py-1 px-2 rounded-lg hover:text-white hover:bg-white/5 transition flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+                <span class="truncate">3. Flujo Asíncrono</span>
+              </button>
+              <button onclick="switchView('javascript', 'react')" class="w-full text-left py-1 px-2 rounded-lg hover:text-white hover:bg-white/5 transition flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+                <span class="truncate">4. Rumbo a React</span>
+              </button>
+              <button onclick="switchView('javascript', 'laboratorio')" class="w-full text-left py-1 px-2 rounded-lg hover:text-white hover:bg-white/5 transition flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-rose-400"></span>
+                <span class="truncate">🧪 Laboratorio Live Code</span>
+              </button>
+              <button onclick="switchView('javascript', 'checklist')" class="w-full text-left py-1 px-2 rounded-lg hover:text-white hover:bg-white/5 transition flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+                <span class="truncate">📋 Checklist de Alistamiento</span>
+              </button>
+            </div>
+          </div>
+
+        </nav>
+      </div>
+
+      <!-- Botón de Colapsar / Expandir Sidebar (Píldora verde al borde estilo SI Contratista) -->
+      <button id="sidebar-toggle" onclick="toggleSidebar()" title="Colapsar / Expandir Menú" class="absolute -right-3.5 top-1/2 -translate-y-1/2 w-7 h-7 rounded-full bg-[#45A824] hover:bg-[#39A900] text-white flex items-center justify-center shadow-md z-40 transition-all duration-200 border-2 border-[#F3F6F9] focus:outline-none">
+        <i id="toggle-icon" data-lucide="chevron-left" class="w-4 h-4 transition-transform duration-300"></i>
+      </button>
+
+    </aside>
+
+    <!-- ========================================================================= -->
+    <!-- 2. CONTENIDO PRINCIPAL -->
+    <!-- ========================================================================= -->
+    <div class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+      
+      <!-- Top Bar / Breadcrumb y Alistamiento (UI SI Contratista) -->
+      <header class="h-14 bg-white/90 backdrop-blur-md border-b border-slate-200/80 px-4 sm:px-8 flex items-center justify-between sticky top-0 z-20">
+        
+        <div class="flex items-center gap-3">
+          <!-- Botón hamburguesa para móviles -->
+          <button onclick="toggleMobileSidebar()" class="md:hidden p-1.5 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-colors" title="Abrir Menú">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </button>
+
+          <!-- Breadcrumbs -->
+          <div class="flex items-center gap-2 text-xs sm:text-sm font-semibold text-slate-500">
+            <button onclick="switchView('inicio')" class="hover:text-[#39A900] transition-colors flex items-center gap-1.5">
+              <i data-lucide="home" class="w-3.5 h-3.5 text-slate-400"></i>
+              <span class="hidden sm:inline">ADSO 3314621</span>
+            </button>
+            <span>&gt;</span>
+            <span id="breadcrumb-current" class="text-[#39A900] font-bold">Inicio</span>
+          </div>
+        </div>
+
+        <!-- Indicador de Alistamiento a la derecha -->
+        <div class="flex items-center gap-4">
+          
+          <!-- Pastilla de Avance del Alistamiento (idéntica a la imagen SI Contratista) -->
+          <div class="flex items-center gap-3 bg-[#0F3647] text-white px-3.5 py-1.5 rounded-full text-xs font-semibold shadow-xs">
+            <span class="text-[11px] text-slate-300 font-medium hidden sm:inline">Avance Alistamiento</span>
+            <div class="w-16 sm:w-28 bg-slate-700/80 h-2 rounded-full overflow-hidden">
+              <div id="top-progress-bar" class="bg-gradient-to-r from-emerald-400 to-[#39A900] h-full rounded-full transition-all duration-500" style="width: 100%;"></div>
+            </div>
+            <span id="top-progress-text" class="text-[11px] font-extrabold text-emerald-400">100%</span>
+          </div>
+
+          <!-- Botón de Ayuda / Info Competencia -->
+          <button onclick="openModalInfoCompetencia()" title="Ver Detalles de la Competencia" class="w-7 h-7 rounded-full border border-slate-300 text-slate-600 hover:text-[#39A900] hover:border-[#39A900] flex items-center justify-center transition-colors">
+            <i data-lucide="help-circle" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- Contenedor Dinámico de Vistas -->
+      <main class="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto space-y-6">
+
+        <!-- ========================================================================= -->
+        <!-- VISTA 1: INICIO (DASHBOARD PRINCIPAL) -->
+        <!-- ========================================================================= -->
+        <div id="view-inicio" class="view-content space-y-6">
+          
+          <!-- Banner Principal de Bienvenida (Estilo Idéntico a Imagen 2) -->
+          <div class="relative bg-gradient-to-r from-[#0F384C] via-[#11374A] to-[#15465C] text-white rounded-3xl p-6 sm:p-8 overflow-hidden shadow-card">
+            
+            <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#39A900_1px,transparent_1px)] [background-size:16px_16px]"></div>
+            
+            <div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-6">
+              <div class="max-w-2xl space-y-3">
+                <span class="text-[11px] sm:text-xs font-extrabold tracking-widest uppercase text-emerald-400 block">
+                  SERVICIO NACIONAL DE APRENDIZAJE · SENA
+                </span>
+                
+                <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white leading-tight">
+                  Bienvenido <span class="text-white block sm:inline font-bold">Aprendiz ADSO</span>
+                </h1>
+
+                <p class="text-xs sm:text-sm text-slate-200 font-normal leading-relaxed">
+                  Competencia: <strong class="text-white font-semibold">Desarrollar la solución de software de acuerdo con el diseño y metodologías de desarrollo.</strong> Centralizamos en el módulo de <strong class="text-emerald-300">JavaScript</strong> todos los conceptos de ES6+, Inmutabilidad y Flujo Asíncrono para prepararte a dominar <strong class="text-white">React + Vite</strong>.
+                </p>
+
+                <!-- Barra de acento verde SI Contratista -->
+                <div class="w-36 h-1 bg-[#39A900] rounded-full mt-4"></div>
+              </div>
+
+              <!-- Tarjeta de Identidad Técnica -->
+              <div class="shrink-0 w-full lg:w-auto flex justify-center">
+                <div class="bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-4 sm:p-5 flex items-center gap-4 text-white shadow-lg max-w-sm">
+                  <div class="w-12 h-12 rounded-xl bg-[#39A900] flex items-center justify-center shrink-0 shadow-glow-green">
+                    <i data-lucide="code-2" class="w-6 h-6 text-white"></i>
+                  </div>
+                  <div>
+                    <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-300 block">Ficha 3314621</span>
+                    <h4 class="text-sm font-extrabold text-white">JavaScript hacia React</h4>
+                    <p class="text-[11px] text-slate-300">ES6+ · Inmutabilidad · Asincronía</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cuadrícula de 4 Tarjetas de Módulos (Enlazan directo al módulo de JavaScript) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            
+            <!-- Tarjeta 1: JavaScript Moderno ES6+ -->
+            <div class="bg-white rounded-2xl p-5 shadow-card hover:shadow-card-hover border border-slate-100 flex flex-col justify-between transition-all duration-200 group">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-3">
+                  <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 border border-amber-200/60 flex items-center justify-center">
+                    <i data-lucide="zap" class="w-5 h-5"></i>
+                  </div>
+                  <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 flex items-center gap-1">
+                    <i data-lucide="check" class="w-3 h-3"></i> COMPLETO
+                  </span>
+                </div>
+                <h3 class="text-base font-extrabold text-slate-900 mb-1 group-hover:text-[#39A900] transition-colors">JavaScript ES6+</h3>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                  Arrow functions, Destructuring, Spread / Rest, Template literals y Scope moderno.
+                </p>
+              </div>
+
+              <div class="pt-4 flex items-center justify-between border-t border-slate-100 mt-4">
+                <span class="text-[11px] font-semibold text-slate-400">Tema 01</span>
+                <button onclick="switchView('javascript', 'es6')" title="Ingresar a JavaScript ES6+" class="w-8 h-8 rounded-full bg-[#45A824] hover:bg-[#39A900] text-white flex items-center justify-center transition-transform group-hover:translate-x-0.5 shadow-sm">
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Tarjeta 2: Inmutabilidad -->
+            <div class="bg-white rounded-2xl p-5 shadow-card hover:shadow-card-hover border border-slate-100 flex flex-col justify-between transition-all duration-200 group">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-3">
+                  <div class="w-10 h-10 rounded-xl bg-emerald-50 text-[#39A900] border border-emerald-200/60 flex items-center justify-center">
+                    <i data-lucide="shield-check" class="w-5 h-5"></i>
+                  </div>
+                  <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 flex items-center gap-1">
+                    <i data-lucide="check" class="w-3 h-3"></i> COMPLETO
+                  </span>
+                </div>
+                <h3 class="text-base font-extrabold text-slate-900 mb-1 group-hover:text-[#39A900] transition-colors">Inmutabilidad</h3>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                  Transformaciones sin mutar con map, filter, reduce, y actualización de objetos.
+                </p>
+              </div>
+
+              <div class="pt-4 flex items-center justify-between border-t border-slate-100 mt-4">
+                <span class="text-[11px] font-semibold text-slate-400">Tema 02</span>
+                <button onclick="switchView('javascript', 'inmutabilidad')" title="Ingresar a Inmutabilidad" class="w-8 h-8 rounded-full bg-[#45A824] hover:bg-[#39A900] text-white flex items-center justify-center transition-transform group-hover:translate-x-0.5 shadow-sm">
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Tarjeta 3: Flujo Asíncrono -->
+            <div class="bg-white rounded-2xl p-5 shadow-card hover:shadow-card-hover border border-slate-100 flex flex-col justify-between transition-all duration-200 group">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-3">
+                  <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 border border-blue-200/60 flex items-center justify-center">
+                    <i data-lucide="clock" class="w-5 h-5"></i>
+                  </div>
+                  <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 flex items-center gap-1">
+                    <i data-lucide="check" class="w-3 h-3"></i> COMPLETO
+                  </span>
+                </div>
+                <h3 class="text-base font-extrabold text-slate-900 mb-1 group-hover:text-[#39A900] transition-colors">Flujo Asíncrono</h3>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                  Promises, async/await, manejo de excepciones y consumo de APIs REST con fetch.
+                </p>
+              </div>
+
+              <div class="pt-4 flex items-center justify-between border-t border-slate-100 mt-4">
+                <span class="text-[11px] font-semibold text-slate-400">Tema 03</span>
+                <button onclick="switchView('javascript', 'async')" title="Ingresar a Flujo Asíncrono" class="w-8 h-8 rounded-full bg-[#45A824] hover:bg-[#39A900] text-white flex items-center justify-center transition-transform group-hover:translate-x-0.5 shadow-sm">
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Tarjeta 4: React + Vite -->
+            <div class="bg-white rounded-2xl p-5 shadow-card hover:shadow-card-hover border border-slate-100 flex flex-col justify-between transition-all duration-200 group">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-3">
+                  <div class="w-10 h-10 rounded-xl bg-cyan-50 text-cyan-600 border border-cyan-200/60 flex items-center justify-center">
+                    <i data-lucide="atom" class="w-5 h-5"></i>
+                  </div>
+                  <span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200 flex items-center gap-1">
+                    <i data-lucide="check" class="w-3 h-3"></i> COMPLETO
+                  </span>
+                </div>
+                <h3 class="text-base font-extrabold text-slate-900 mb-1 group-hover:text-[#39A900] transition-colors">React + Vite</h3>
+                <p class="text-xs text-slate-500 leading-relaxed">
+                  Componentes funcionales, JSX, props, useState y consumo con useEffect.
+                </p>
+              </div>
+
+              <div class="pt-4 flex items-center justify-between border-t border-slate-100 mt-4">
+                <span class="text-[11px] font-semibold text-slate-400">Tema 04</span>
+                <button onclick="switchView('javascript', 'react')" title="Ingresar a React + Vite" class="w-8 h-8 rounded-full bg-[#45A824] hover:bg-[#39A900] text-white flex items-center justify-center transition-transform group-hover:translate-x-0.5 shadow-sm">
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Banner Informativo de "Buddy" el Chatbot Tutor -->
+          <div class="relative bg-gradient-to-r from-[#173F32] via-[#1A4537] to-[#123329] text-white rounded-3xl p-6 sm:p-7 overflow-hidden shadow-card">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
+              
+              <div class="space-y-2 max-w-2xl">
+                <h3 class="text-lg sm:text-xl font-extrabold text-white flex items-center gap-2">
+                  <span>¡Conoce a Buddy el Asistente de Formación ADSO!</span>
+                </h3>
+                <p class="text-xs sm:text-sm text-emerald-100/90 leading-relaxed">
+                  Descubre el chatbot de tutoría técnica, tu aliado para consultar de manera rápida y sencilla dudas sobre sintaxis moderna, ejercicios de inmutabilidad, promesas y consejos para React. <strong class="text-white font-semibold">Haz clic en el asistente flotante en la esquina inferior derecha para interactuar.</strong>
+                </p>
+              </div>
+
+              <div class="shrink-0">
+                <button onclick="toggleBuddyChat()" class="px-5 py-2.5 bg-[#45A824] hover:bg-[#39A900] text-white font-extrabold text-xs sm:text-sm rounded-xl transition-all shadow-sm hover:shadow-md flex items-center gap-2">
+                  <i data-lucide="message-square" class="w-4 h-4"></i>
+                  <span>Consultar a Buddy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Métricas y Accesos Rápidos al Laboratorio y Checklist -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div onclick="switchView('javascript', 'laboratorio')" class="bg-white rounded-2xl p-5 shadow-card hover:shadow-card-hover border border-slate-100 flex items-center justify-between cursor-pointer group transition-all">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center font-extrabold text-lg">
+                  <i data-lucide="terminal" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h4 class="text-sm font-extrabold text-slate-800 group-hover:text-[#39A900] transition-colors">Laboratorio Live Code</h4>
+                  <p class="text-xs text-slate-500">Ejecuta JavaScript moderno en tiempo real con consola integrada.</p>
+                </div>
+              </div>
+              <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-[#39A900] group-hover:translate-x-1 transition-all"></i>
+            </div>
+
+            <div onclick="switchView('javascript', 'checklist')" class="bg-white rounded-2xl p-5 shadow-card hover:shadow-card-hover border border-slate-100 flex items-center justify-between cursor-pointer group transition-all">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 rounded-xl bg-emerald-50 text-[#39A900] flex items-center justify-center font-extrabold text-lg">
+                  <i data-lucide="check-square" class="w-6 h-6"></i>
+                </div>
+                <div>
+                  <h4 class="text-sm font-extrabold text-slate-800 group-hover:text-[#39A900] transition-colors">Checklist de Alistamiento</h4>
+                  <p class="text-xs text-slate-500">Verifica los 8 conceptos esenciales antes de codificar en React.</p>
+                </div>
+              </div>
+              <i data-lucide="chevron-right" class="w-5 h-5 text-slate-400 group-hover:text-[#39A900] group-hover:translate-x-1 transition-all"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- ========================================================================= -->
+        <!-- VISTA 2: JAVASCRIPT HUB (TODO CENTRALIZADO EN PESTAÑAS) -->
+        <!-- ========================================================================= -->
+        <div id="view-javascript" class="view-content hidden space-y-6">
+          
+          <!-- Encabezado del Módulo JavaScript -->
+          <div class="bg-white rounded-3xl p-6 shadow-card border border-slate-100 space-y-4">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div>
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-black text-[#39A900] uppercase tracking-wider">Módulo Especializado</span>
+                  <span class="text-[10px] bg-amber-100 text-amber-800 font-bold px-2 py-0.5 rounded-full">Core ADSO</span>
+                </div>
+                <h2 class="text-xl sm:text-2xl font-black text-slate-900 mt-1">JavaScript: Moderno, Inmutable y Asíncrono</h2>
+                <p class="text-xs sm:text-sm text-slate-500">
+                  Explora todos los temas clave para preparar tu arquitectura mental antes de construir componentes en React + Vite.
+                </p>
+              </div>
+
+              <!-- Selector de Pestañas en Pastillas (Estilo SI Contratista) -->
+              <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
+                <button onclick="switchJsTab('es6')" id="js-tab-btn-es6" class="js-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-[#45A824] text-white shadow-xs shrink-0 flex items-center gap-1.5">
+                  <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+                  <span>1. ES6+</span>
+                </button>
+                <button onclick="switchJsTab('inmutabilidad')" id="js-tab-btn-inmutabilidad" class="js-tab-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all shrink-0 flex items-center gap-1.5">
+                  <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+                  <span>2. Inmutabilidad</span>
+                </button>
+                <button onclick="switchJsTab('async')" id="js-tab-btn-async" class="js-tab-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all shrink-0 flex items-center gap-1.5">
+                  <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+                  <span>3. Asincronía</span>
+                </button>
+                <button onclick="switchJsTab('react')" id="js-tab-btn-react" class="js-tab-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all shrink-0 flex items-center gap-1.5">
+                  <i data-lucide="atom" class="w-3.5 h-3.5"></i>
+                  <span>4. React + Vite</span>
+                </button>
+                <button onclick="switchJsTab('laboratorio')" id="js-tab-btn-laboratorio" class="js-tab-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all shrink-0 flex items-center gap-1.5">
+                  <i data-lucide="terminal" class="w-3.5 h-3.5"></i>
+                  <span>Laboratorio</span>
+                </button>
+                <button onclick="switchJsTab('checklist')" id="js-tab-btn-checklist" class="js-tab-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all shrink-0 flex items-center gap-1.5">
+                  <i data-lucide="check-square" class="w-3.5 h-3.5"></i>
+                  <span>Checklist</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- =============================================================== -->
+          <!-- PESTAÑA A: ES6+ MODERNO -->
+          <!-- =============================================================== -->
+          <div id="js-content-es6" class="js-tab-content space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-card border border-slate-100">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+                <div>
+                  <h3 class="text-lg sm:text-xl font-black text-slate-900">Fundamentos Modernos de ECMAScript (ES6+)</h3>
+                  <p class="text-xs text-slate-500 mt-1">Sintaxis indispensable para escribir componentes y funciones puras.</p>
+                </div>
+                <button onclick="loadSnippetInLab('es6')" class="px-4 py-2 bg-[#45A824] hover:bg-[#39A900] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs shrink-0">
+                  <i data-lucide="play" class="w-4 h-4"></i>
+                  <span>Probar en Laboratorio</span>
+                </button>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-6">
+                <!-- 1. Variables y Scope -->
+                <div class="border border-slate-200/80 rounded-2xl p-5 bg-slate-50/50">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="w-6 h-6 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-xs">1</span>
+                    <h4 class="text-sm font-extrabold text-slate-900">const vs let (Cero var)</h4>
+                  </div>
+                  <p class="text-xs text-slate-600 mb-3">Scope de bloque { } y erradicación del hoisting. En React el 90% de variables son const.</p>
+                  <div class="bg-slate-900 text-slate-100 rounded-xl p-3 font-mono text-[11px] overflow-x-auto">
+                    <span class="text-purple-400">const</span> FICHA = <span class="text-emerald-400">'3314621'</span>;<br>
+                    <span class="text-purple-400">let</span> contador = <span class="text-amber-300">0</span>;
+                  </div>
+                </div>
+
+                <!-- 2. Arrow Functions -->
+                <div class="border border-slate-200/80 rounded-2xl p-5 bg-slate-50/50">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="w-6 h-6 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-xs">2</span>
+                    <h4 class="text-sm font-extrabold text-slate-900">Funciones Flecha (Arrow Functions)</h4>
+                  </div>
+                  <p class="text-xs text-slate-600 mb-3">Retorno implícito y contexto léxico de this para manejadores de eventos.</p>
+                  <div class="bg-slate-900 text-slate-100 rounded-xl p-3 font-mono text-[11px] overflow-x-auto">
+                    <span class="text-purple-400">const</span> <span class="text-blue-300">saludar</span> = (nombre) =&gt; <span class="text-emerald-400">`Hola, ${nombre}`</span>;
+                  </div>
+                </div>
+
+                <!-- 3. Destructuring -->
+                <div class="border border-slate-200/80 rounded-2xl p-5 bg-slate-50/50">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="w-6 h-6 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-xs">3</span>
+                    <h4 class="text-sm font-extrabold text-slate-900">Desestructuración (Destructuring)</h4>
+                  </div>
+                  <p class="text-xs text-slate-600 mb-3">Extracción limpia de propiedades en objetos (props) y arreglos (hooks useState).</p>
+                  <div class="bg-slate-900 text-slate-100 rounded-xl p-3 font-mono text-[11px] overflow-x-auto">
+                    <span class="text-purple-400">const</span> { nombre, rol } = aprendiz;<br>
+                    <span class="text-purple-400">const</span> [ estado, setEstado ] = useState(<span class="text-amber-300">0</span>);
+                  </div>
+                </div>
+
+                <!-- 4. Spread & Rest -->
+                <div class="border border-slate-200/80 rounded-2xl p-5 bg-slate-50/50">
+                  <div class="flex items-center gap-2 mb-2">
+                    <span class="w-6 h-6 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-xs">4</span>
+                    <h4 class="text-sm font-extrabold text-slate-900">Operador Spread / Rest (...)</h4>
+                  </div>
+                  <p class="text-xs text-slate-600 mb-3">Clonación inmutable y fusión de objetos de estado sin mutar referencias en memoria.</p>
+                  <div class="bg-slate-900 text-slate-100 rounded-xl p-3 font-mono text-[11px] overflow-x-auto">
+                    <span class="text-purple-400">const</span> nuevoObj = { ...usuario, activo: <span class="text-amber-300">true</span> };
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- =============================================================== -->
+          <!-- PESTAÑA B: INMUTABILIDAD -->
+          <!-- =============================================================== -->
+          <div id="js-content-inmutabilidad" class="js-tab-content hidden space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-card border border-slate-100">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+                <div>
+                  <h3 class="text-lg sm:text-xl font-black text-slate-900">Inmutabilidad en Arreglos y Objetos</h3>
+                  <p class="text-xs text-slate-500 mt-1">Por qué en React <strong>jamás debes usar .push()</strong> ni modificar el estado directamente.</p>
+                </div>
+                <button onclick="loadSnippetInLab('inmutabilidad')" class="px-4 py-2 bg-[#45A824] hover:bg-[#39A900] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs shrink-0">
+                  <i data-lucide="play" class="w-4 h-4"></i>
+                  <span>Probar en Laboratorio</span>
+                </button>
+              </div>
+
+              <!-- Comparador Visual -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-6">
+                <div class="border border-rose-200 bg-rose-50/40 rounded-2xl p-5">
+                  <div class="flex items-center gap-2 text-rose-700 font-extrabold text-sm mb-2">
+                    <i data-lucide="x-circle" class="w-4 h-4"></i>
+                    <span>Métodos Mutables (Prohibidos en React)</span>
+                  </div>
+                  <p class="text-xs text-rose-800/80 mb-3">Modifican el mismo puntero en memoria. React no detecta cambios y no actualiza el DOM.</p>
+                  <div class="bg-slate-900 text-rose-300 rounded-xl p-3 font-mono text-[11px] space-y-1">
+                    <div>items.push(nuevo); <span class="text-slate-500">// ERROR GRAVE</span></div>
+                    <div>items.splice(0, 1); <span class="text-slate-500">// ERROR GRAVE</span></div>
+                    <div>usuario.nombre = 'David'; <span class="text-slate-500">// ERROR GRAVE</span></div>
+                  </div>
+                </div>
+
+                <div class="border border-emerald-200 bg-emerald-50/40 rounded-2xl p-5">
+                  <div class="flex items-center gap-2 text-emerald-800 font-extrabold text-sm mb-2">
+                    <i data-lucide="check-circle" class="w-4 h-4 text-[#39A900]"></i>
+                    <span>Métodos Inmutables (Obligatorios en React)</span>
+                  </div>
+                  <p class="text-xs text-emerald-900/80 mb-3">Generan un nuevo objeto o array en memoria. React compara con Object.is y renderiza de inmediato.</p>
+                  <div class="bg-slate-900 text-emerald-300 rounded-xl p-3 font-mono text-[11px] space-y-1">
+                    <div>[...items, nuevo] <span class="text-slate-500">// Agregar</span></div>
+                    <div>items.filter(i =&gt; i.id !== id) <span class="text-slate-500">// Eliminar</span></div>
+                    <div>items.map(i =&gt; i.id === id ? {...i, activo: true} : i) <span class="text-slate-500">// Modificar</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- =============================================================== -->
+          <!-- PESTAÑA C: FLUJO ASÍNCRONO -->
+          <!-- =============================================================== -->
+          <div id="js-content-async" class="js-tab-content hidden space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-card border border-slate-100">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+                <div>
+                  <h3 class="text-lg sm:text-xl font-black text-slate-900">Flujo Asíncrono, Promesas y Fetch API</h3>
+                  <p class="text-xs text-slate-500 mt-1">Cómo solicitar datos a servicios web sin congelar la pantalla del usuario.</p>
+                </div>
+                <button onclick="loadSnippetInLab('async')" class="px-4 py-2 bg-[#45A824] hover:bg-[#39A900] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs shrink-0">
+                  <i data-lucide="play" class="w-4 h-4"></i>
+                  <span>Probar en Laboratorio</span>
+                </button>
+              </div>
+
+              <!-- Probador Rápido de Fetch API en Vivo -->
+              <div class="mt-6 border border-slate-200 rounded-2xl p-5 bg-slate-50/50">
+                <h4 class="text-sm font-extrabold text-slate-900 mb-1 flex items-center gap-2">
+                  <i data-lucide="globe" class="w-4 h-4 text-emerald-600"></i>
+                  <span>Probador de Consulta HTTP Real (JSONPlaceholder Live)</span>
+                </h4>
+                <p class="text-xs text-slate-500 mb-4">Ejecuta una petición GET asíncrona real desde el navegador.</p>
+
+                <div class="flex flex-wrap items-center gap-3">
+                  <button onclick="ejecutarFetchDemo()" id="btn-fetch-demo" class="px-4 py-2 bg-[#45A824] hover:bg-[#39A900] text-white font-bold text-xs rounded-xl flex items-center gap-2 shadow-xs transition-all">
+                    <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                    <span>Consultar Usuarios Remotos</span>
+                  </button>
+                  <span id="fetch-demo-status" class="text-xs font-semibold text-slate-400">Listo para consultar.</span>
+                </div>
+
+                <div id="fetch-demo-result" class="mt-4 hidden bg-slate-950 text-emerald-400 p-4 rounded-xl font-mono text-[11px] max-h-48 overflow-y-auto"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- =============================================================== -->
+          <!-- PESTAÑA D: CAMINO A REACT + VITE -->
+          <!-- =============================================================== -->
+          <div id="js-content-react" class="js-tab-content hidden space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-card border border-slate-100">
+              <div class="border-b border-slate-100 pb-5">
+                <h3 class="text-lg sm:text-xl font-black text-slate-900">Camino a React 19 + Vite</h3>
+                <p class="text-xs text-slate-500 mt-1">Conexión directa entre lo aprendido y el desarrollo de componentes modernos.</p>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+                <div class="border border-slate-200 rounded-2xl p-4 bg-slate-50">
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500">En JavaScript ES6+</span>
+                  <h4 class="text-xs font-bold text-slate-900 mt-1">Una función flecha que retorna HTML</h4>
+                  <div class="bg-slate-900 text-slate-200 p-2.5 rounded-lg font-mono text-[11px] mt-2">
+                    const Tarjeta = ({ titulo }) =&gt; `&lt;div&gt;${titulo}&lt;/div&gt;`;
+                  </div>
+                </div>
+
+                <div class="border border-cyan-200 rounded-2xl p-4 bg-cyan-50/40">
+                  <span class="text-[10px] font-bold uppercase tracking-wider text-cyan-700">En React + Vite</span>
+                  <h4 class="text-xs font-bold text-slate-900 mt-1">¡Es un Componente Funcional con JSX!</h4>
+                  <div class="bg-slate-900 text-cyan-300 p-2.5 rounded-lg font-mono text-[11px] mt-2">
+                    export const Tarjeta = ({ titulo }) =&gt; &lt;div&gt;{titulo}&lt;/div&gt;;
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-6 p-4 bg-slate-900 text-slate-100 rounded-2xl font-mono text-xs space-y-1">
+                <div class="text-slate-400 font-sans font-bold">Comando de Inicialización con Vite:</div>
+                <div class="text-emerald-400 font-bold">npm create vite@latest frontend-adso -- --template react</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- =============================================================== -->
+          <!-- PESTAÑA E: LABORATORIO LIVE CODE (PLAYGROUND) -->
+          <!-- =============================================================== -->
+          <div id="js-content-laboratorio" class="js-tab-content hidden space-y-6">
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-card border border-slate-100">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-5">
+                <div>
+                  <h3 class="text-lg sm:text-xl font-black text-slate-900">Laboratorio de Código ADSO</h3>
+                  <p class="text-xs text-slate-500 mt-1">Escribe, modifica y corre código en vivo con salida directa a consola virtual.</p>
+                </div>
+
+                <div class="flex items-center gap-2">
+                  <select id="preset-selector" onchange="applyPresetCode(this.value)" class="text-xs font-semibold bg-slate-100 border border-slate-200 rounded-xl px-3 py-2 text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#39A900]">
+                    <option value="es6">Preset 1: ES6+ & Destructuring</option>
+                    <option value="inmutabilidad">Preset 2: Inmutabilidad (map, filter, reduce)</option>
+                    <option value="async">Preset 3: Async/Await & Fetch API</option>
+                    <option value="vacio">Editor Limpio</option>
+                  </select>
+                  
+                  <button onclick="ejecutarCodigoPlayground()" class="px-5 py-2 bg-[#45A824] hover:bg-[#39A900] text-white font-extrabold text-xs rounded-xl flex items-center gap-2 shadow-xs transition-all">
+                    <i data-lucide="play" class="w-4 h-4"></i>
+                    <span>Ejecutar</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mt-6">
+                <!-- Editor -->
+                <div class="flex flex-col">
+                  <div class="flex items-center justify-between bg-slate-800 text-slate-300 px-4 py-2.5 rounded-t-xl text-xs font-mono font-bold">
+                    <span class="flex items-center gap-2">
+                      <span class="w-2.5 h-2.5 rounded-full bg-rose-500"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                      <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                      <span class="ml-2 text-slate-200 font-sans">editor.js</span>
+                    </span>
+                    <button onclick="limpiarEditor()" class="text-slate-400 hover:text-white font-sans text-[11px]">Limpiar</button>
+                  </div>
+                  <textarea id="code-input" spellcheck="false" class="w-full h-80 bg-slate-900 text-slate-100 p-4 font-mono text-xs leading-relaxed rounded-b-xl border border-slate-800 focus:outline-none focus:ring-2 focus:ring-[#39A900] resize-y"></textarea>
+                </div>
+
+                <!-- Consola -->
+                <div class="flex flex-col">
+                  <div class="flex items-center justify-between bg-slate-800 text-slate-300 px-4 py-2.5 rounded-t-xl text-xs font-mono font-bold">
+                    <span class="flex items-center gap-2">
+                      <i data-lucide="terminal" class="w-3.5 h-3.5 text-emerald-400"></i>
+                      <span class="text-slate-200 font-sans">Consola de Salida</span>
+                    </span>
+                    <button onclick="limpiarConsola()" class="text-slate-400 hover:text-white font-sans text-[11px]">Limpiar Consola</button>
+                  </div>
+                  <div id="code-output" class="w-full h-80 bg-slate-950 text-emerald-400 p-4 font-mono text-xs leading-relaxed rounded-b-xl border border-slate-900 overflow-y-auto whitespace-pre-wrap">Presiona "Ejecutar" para ver la salida del código aquí...</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- =============================================================== -->
+          <!-- PESTAÑA F: CHECKLIST DE ALISTAMIENTO -->
+          <!-- =============================================================== -->
+          <div id="js-content-checklist" class="js-tab-content hidden space-y-6">
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg sm:text-xl font-extrabold text-slate-900 tracking-tight">Checklist de Alistamiento a React</h3>
+              <button onclick="resetChecklist()" class="text-xs font-semibold text-slate-500 hover:text-rose-600 transition-colors">
+                Reiniciar Estado
+              </button>
+            </div>
+
+            <!-- Barra de Progreso y Mensaje Exitoso (Imagen 4) -->
+            <div class="bg-white rounded-3xl p-6 shadow-card border border-slate-100 space-y-4">
+              <div class="flex items-center justify-between text-xs sm:text-sm font-bold text-slate-700">
+                <span>Progreso de Aprendizaje</span>
+                <span id="checklist-counter" class="text-slate-500 font-semibold">8/8 completados</span>
+              </div>
+
+              <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                <div id="checklist-progress-bar" class="bg-[#39A900] h-full rounded-full transition-all duration-300" style="width: 100%;"></div>
+              </div>
+
+              <div id="checklist-success-banner" class="bg-white border border-emerald-200/80 rounded-2xl p-4 flex items-center gap-3 shadow-xs">
+                <div class="w-6 h-6 rounded-full bg-emerald-100 text-[#39A900] flex items-center justify-center shrink-0">
+                  <i data-lucide="check" class="w-4 h-4"></i>
+                </div>
+                <p class="text-xs sm:text-sm font-semibold text-slate-800">
+                  El aprendiz cumple con los 8 conceptos previos para desarrollar aplicaciones profesionales en React + Vite.
+                </p>
+              </div>
+            </div>
+
+            <!-- Lista de Items del Checklist -->
+            <div class="space-y-3" id="checklist-items-container"></div>
+          </div>
+
+        </div>
+
+      </main>
+
+      <!-- Footer Institucional (Idéntico a las capturas SI Contratista) -->
+      <footer class="py-4 px-6 text-center text-xs text-slate-500 border-t border-slate-200 bg-white/50">
+        <p>SI Formación ADSO © Copyright. Servicio Nacional de Aprendizaje SENA, República de Colombia.</p>
+      </footer>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 3. MODAL DETALLE / INFORMACIÓN DE COMPETENCIA (UI SI CONTRATISTA) -->
+  <!-- ========================================================================= -->
+  <div id="modal-detalle" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm transition-opacity">
+    <div class="bg-white rounded-3xl w-full max-w-2xl shadow-modal overflow-hidden transform transition-all border border-white/20">
+      
+      <div class="bg-gradient-to-r from-[#0F3647] to-[#16455B] text-white p-5 flex items-center justify-between">
+        <div>
+          <h3 id="modal-title" class="text-base font-extrabold tracking-tight">Competencia Laboral SENA</h3>
+          <p id="modal-subtitle" class="text-xs text-slate-300">Norma Sectorial de Competencia · ADSO 3314621</p>
+        </div>
+        <button onclick="cerrarModalDetalle()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-5 max-h-[75vh] overflow-y-auto">
+        <div id="modal-content" class="text-xs sm:text-sm text-slate-700 space-y-4"></div>
+
+        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+          <button onclick="cerrarModalDetalle()" class="px-4 py-2 text-xs font-bold text-slate-600 hover:text-slate-900">
+            Cerrar
+          </button>
+          <button onclick="cerrarModalDetalle()" class="px-5 py-2.5 bg-[#45A824] hover:bg-[#39A900] text-white font-extrabold text-xs rounded-xl shadow-xs transition-all flex items-center gap-2">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>Entendido</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 4. BOTÓN FLOTANTE DE ACCESIBILIDAD (SI CONTRATISTA) -->
+  <!-- ========================================================================= -->
+  <div class="fixed right-3 top-1/2 -translate-y-1/2 z-30">
+    <button onclick="toggleAccesibilidad()" title="Herramientas de Accesibilidad SENA" class="w-10 h-10 rounded-2xl bg-[#45A824] hover:bg-[#39A900] text-white flex items-center justify-center shadow-lg transition-transform hover:scale-105 border-2 border-white">
+      <i data-lucide="accessibility" class="w-5 h-5"></i>
+    </button>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 5. CHATBOT ASISTENTE TUTOR "BUDDY" FLOTANTE (UI IMÁGENES 2 Y 4) -->
+  <!-- ========================================================================= -->
+  <div class="fixed bottom-5 right-5 z-40 flex flex-col items-end">
+    
+    <!-- Ventana de Chat de Buddy -->
+    <div id="buddy-chat-window" class="hidden mb-3 w-80 sm:w-96 bg-white rounded-3xl shadow-modal border border-slate-200 overflow-hidden transform transition-all duration-300">
+      
+      <div class="bg-gradient-to-r from-[#173F32] to-[#1E4D3E] text-white p-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-white text-emerald-800 flex items-center justify-center font-bold shadow-sm">
+            🤖
+          </div>
+          <div>
+            <h4 class="text-xs font-extrabold text-white">Buddy · Tutor ADSO</h4>
+            <p class="text-[10px] text-emerald-200 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> En línea para ayudarte
+            </p>
+          </div>
+        </div>
+        <button onclick="toggleBuddyChat()" class="text-white/80 hover:text-white p-1">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div id="buddy-messages" class="p-4 h-72 overflow-y-auto space-y-3 text-xs bg-slate-50/50">
+        <div class="flex items-start gap-2">
+          <span class="text-base">🤖</span>
+          <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-xs text-slate-700 leading-relaxed">
+            ¡Hola! Soy <strong>Buddy</strong>, tu asistente de formación técnica en ADSO. ¿Tienes dudas sobre <code>map()</code>, <code>filter()</code>, <code>destructuring</code>, <code>async/await</code> o cómo crear tu primer componente en <strong>React + Vite</strong>?
+          </div>
+        </div>
+      </div>
+
+      <!-- Preguntas Frecuentes Rápidas -->
+      <div class="px-3 py-2 border-t border-slate-100 bg-white flex items-center gap-1.5 overflow-x-auto text-[10px]">
+        <button onclick="askBuddy('¿Por qué no usar .push() en React?')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 shrink-0 font-medium">¿Por qué no .push()?</button>
+        <button onclick="askBuddy('¿Cómo funciona el destructuring?')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 shrink-0 font-medium">Destructuring</button>
+        <button onclick="askBuddy('¿Qué es async/await?')" class="px-2.5 py-1 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 shrink-0 font-medium">async/await</button>
+      </div>
+
+      <!-- Formulario de Entrada de Pregunta -->
+      <form onsubmit="handleBuddySubmit(event)" class="p-3 border-t border-slate-200 bg-white flex items-center gap-2">
+        <input type="text" id="buddy-input" placeholder="Pregúntale a Buddy..." class="flex-1 bg-slate-100 text-xs px-3.5 py-2 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#39A900]">
+        <button type="submit" class="w-8 h-8 rounded-xl bg-[#45A824] hover:bg-[#39A900] text-white flex items-center justify-center shrink-0">
+          <i data-lucide="send" class="w-3.5 h-3.5"></i>
+        </button>
+      </form>
+    </div>
+
+    <!-- Botón Mascota de Buddy Flotante -->
+    <button onclick="toggleBuddyChat()" title="Hablar con Buddy" class="group flex items-center gap-2 p-1.5 bg-white border-2 border-[#45A824] rounded-2xl shadow-xl hover:shadow-2xl transition-all hover:scale-105">
+      <div class="w-10 h-10 rounded-xl bg-[#0F3647] flex items-center justify-center text-xl shadow-xs">
+        📄
+      </div>
+      <span class="text-xs font-extrabold text-[#0F3647] pr-2 hidden sm:inline group-hover:text-[#39A900]">Buddy ADSO</span>
+    </button>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- 6. LÓGICA JAVASCRIPT DE LA APLICACIÓN -->
+  <!-- ========================================================================= -->
+  <script>
+    // Inicializar Iconos Lucide
+    function initLucide() {
+      if (window.lucide) {
+        lucide.createIcons();
+      }
+    }
+
+    // -------------------------------------------------------------
+    // GESTIÓN DEL SIDEBAR: RESPONSIVE Y COMPACTABLE
+    // -------------------------------------------------------------
+    let isCompact = false;
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('main-sidebar');
+      const toggleIcon = document.getElementById('toggle-icon');
+
+      if (!sidebar) return;
+
+      isCompact = !isCompact;
+      sidebar.classList.toggle('sidebar-compact', isCompact);
+
+      if (toggleIcon) {
+        if (isCompact) {
+          toggleIcon.classList.add('rotate-180');
+        } else {
+          toggleIcon.classList.remove('rotate-180');
+        }
+      }
+
+      initLucide();
+    }
+
+    function toggleMobileSidebar() {
+      const sidebar = document.getElementById('main-sidebar');
+      const backdrop = document.getElementById('sidebar-backdrop');
+      if (!sidebar || !backdrop) return;
+
+      const isOpen = sidebar.classList.contains('mobile-open');
+      if (isOpen) {
+        sidebar.classList.remove('mobile-open');
+        backdrop.classList.add('hidden');
+      } else {
+        sidebar.classList.add('mobile-open');
+        backdrop.classList.remove('hidden');
+      }
+      initLucide();
+    }
+
+    // -------------------------------------------------------------
+    // NAVEGACIÓN PRINCIPAL ENTRE VISTAS (INICIO Y JAVASCRIPT)
+    // -------------------------------------------------------------
+    function switchView(viewName, tabName = null) {
+      // Cerrar sidebar en móvil si está abierto
+      const sidebar = document.getElementById('main-sidebar');
+      const backdrop = document.getElementById('sidebar-backdrop');
+      if (sidebar && sidebar.classList.contains('mobile-open')) {
+        sidebar.classList.remove('mobile-open');
+        if (backdrop) backdrop.classList.add('hidden');
+      }
+
+      // Vistas principales
+      const viewInicio = document.getElementById('view-inicio');
+      const viewJavascript = document.getElementById('view-javascript');
+
+      const btnInicio = document.getElementById('nav-btn-inicio');
+      const btnJavascript = document.getElementById('nav-btn-javascript');
+      const breadcrumb = document.getElementById('breadcrumb-current');
+
+      if (viewName === 'inicio') {
+        if (viewInicio) viewInicio.classList.remove('hidden');
+        if (viewJavascript) viewJavascript.classList.add('hidden');
+
+        if (btnInicio) {
+          btnInicio.className = "nav-btn-wrapper w-full flex items-center gap-3 px-3.5 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 bg-[#45A824] text-white shadow-sm";
+        }
+        if (btnJavascript) {
+          btnJavascript.className = "nav-btn-wrapper w-full flex items-center gap-3 px-3.5 py-3 rounded-xl font-medium text-xs sm:text-sm text-slate-300 hover:text-white hover:bg-white/10 transition-all duration-200";
+        }
+        if (breadcrumb) breadcrumb.textContent = 'Inicio';
+      } else {
+        if (viewInicio) viewInicio.classList.add('hidden');
+        if (viewJavascript) viewJavascript.classList.remove('hidden');
+
+        if (btnInicio) {
+          btnInicio.className = "nav-btn-wrapper w-full flex items-center gap-3 px-3.5 py-3 rounded-xl font-medium text-xs sm:text-sm text-slate-300 hover:text-white hover:bg-white/10 transition-all duration-200";
+        }
+        if (btnJavascript) {
+          btnJavascript.className = "nav-btn-wrapper w-full flex items-center gap-3 px-3.5 py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-200 bg-[#45A824] text-white shadow-sm";
+        }
+        if (breadcrumb) breadcrumb.textContent = 'Módulo JavaScript';
+
+        if (tabName) {
+          switchJsTab(tabName);
+        }
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      initLucide();
+    }
+
+    // -------------------------------------------------------------
+    // PESTAÑAS DEL HUB DE JAVASCRIPT
+    // -------------------------------------------------------------
+    function switchJsTab(tabKey) {
+      const tabs = ['es6', 'inmutabilidad', 'async', 'react', 'laboratorio', 'checklist'];
+
+      tabs.forEach(t => {
+        const content = document.getElementById(`js-content-${t}`);
+        const btn = document.getElementById(`js-tab-btn-${t}`);
+
+        if (content) {
+          if (t === tabKey) {
+            content.classList.remove('hidden');
+          } else {
+            content.classList.add('hidden');
+          }
+        }
+
+        if (btn) {
+          if (t === tabKey) {
+            btn.className = "js-tab-btn px-4 py-2 rounded-xl text-xs font-bold transition-all bg-[#45A824] text-white shadow-xs shrink-0 flex items-center gap-1.5";
+          } else {
+            btn.className = "js-tab-btn px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all shrink-0 flex items-center gap-1.5";
+          }
+        }
+      });
+
+      initLucide();
+    }
+
+    // -------------------------------------------------------------
+    // CHECKLIST DE ALISTAMIENTO CON LOCALSTORAGE
+    // -------------------------------------------------------------
+    const checklistItems = [
+      { id: 'chk-scope', title: 'Variables Modernas (const / let)', desc: 'Scope de bloque { }, inmutabilidad de referencia de const y cero hoisting.', completed: true },
+      { id: 'chk-arrow', title: 'Funciones Flecha (Arrow Functions)', desc: 'Retorno implícito y contexto léxico para event handlers en React.', completed: true },
+      { id: 'chk-destruct', title: 'Desestructuración de Objetos y Arreglos', desc: 'Extracción de props en componentes y valores en hooks como useState.', completed: true },
+      { id: 'chk-spread', title: 'Operador Spread (...) y Rest Parameters', desc: 'Clonado superficial de datos y fusión de estado sin mutar memoria.', completed: true },
+      { id: 'chk-inmut-arr', title: 'Transformaciones Inmutables con .map() y .filter()', desc: 'Generación de listas JSX y eliminación de elementos sin .splice().', completed: true },
+      { id: 'chk-inmut-obj', title: 'Actualización Inmutable de Objetos Anidados', desc: 'Regla de oro: No modificar state directamente para garantizar re-render.', completed: true },
+      { id: 'chk-async', title: 'Promesas y Flujo con async / await', desc: 'Manejo no bloqueante de peticiones y captura limpia con try...catch.', completed: true },
+      { id: 'chk-fetch', title: 'Consumo de APIs REST con Fetch API', desc: 'Peticiones GET/POST asíncronas hacia servidores web y parseo JSON.', completed: true }
+    ];
+
+    function initChecklist() {
+      const saved = localStorage.getItem('adso_checklist_state_v2');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          checklistItems.forEach(item => {
+            if (parsed[item.id] !== undefined) item.completed = parsed[item.id];
+          });
+        } catch (e) { console.error(e); }
+      }
+      renderChecklist();
+      updateProgress();
+    }
+
+    function toggleChecklistItem(id) {
+      const item = checklistItems.find(i => i.id === id);
+      if (item) {
+        item.completed = !item.completed;
+        saveChecklistState();
+        renderChecklist();
+        updateProgress();
+      }
+    }
+
+    function saveChecklistState() {
+      const state = {};
+      checklistItems.forEach(i => state[i.id] = i.completed);
+      localStorage.setItem('adso_checklist_state_v2', JSON.stringify(state));
+    }
+
+    function resetChecklist() {
+      if (confirm('¿Deseas reiniciar los estados del checklist?')) {
+        checklistItems.forEach(i => i.completed = false);
+        saveChecklistState();
+        renderChecklist();
+        updateProgress();
+      }
+    }
+
+    function renderChecklist() {
+      const container = document.getElementById('checklist-items-container');
+      if (!container) return;
+
+      container.innerHTML = checklistItems.map(item => `
+        <div class="bg-white rounded-2xl p-4 shadow-card border border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 transition-all">
+          <div class="flex items-start gap-3">
+            <button onclick="toggleChecklistItem('${item.id}')" class="mt-0.5 w-6 h-6 rounded-lg border-2 ${item.completed ? 'bg-[#45A824] border-[#45A824] text-white' : 'border-slate-300 text-transparent'} flex items-center justify-center transition-colors shrink-0">
+              <i data-lucide="check" class="w-4 h-4"></i>
+            </button>
+            <div>
+              <h4 class="text-xs sm:text-sm font-extrabold text-slate-900 ${item.completed ? 'line-through text-slate-400' : ''}">${item.title}</h4>
+              <p class="text-xs text-slate-500 mt-0.5 leading-relaxed">${item.desc}</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${item.completed ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-500'}">
+              ${item.completed ? 'completo' : 'pendiente'}
+            </span>
+          </div>
+        </div>
+      `).join('');
+
+      initLucide();
+    }
+
+    function updateProgress() {
+      const total = checklistItems.length;
+      const completed = checklistItems.filter(i => i.completed).length;
+      const percent = Math.round((completed / total) * 100);
+
+      const topBar = document.getElementById('top-progress-bar');
+      const topText = document.getElementById('top-progress-text');
+      if (topBar) topBar.style.width = `${percent}%`;
+      if (topText) topText.textContent = `${percent}%`;
+
+      const checklistBar = document.getElementById('checklist-progress-bar');
+      const checklistCounter = document.getElementById('checklist-counter');
+      if (checklistBar) checklistBar.style.width = `${percent}%`;
+      if (checklistCounter) checklistCounter.textContent = `${completed}/${total} completados`;
+
+      const banner = document.getElementById('checklist-success-banner');
+      if (banner) {
+        if (completed === total) banner.classList.remove('hidden');
+        else banner.classList.add('hidden');
+      }
+    }
+
+    // -------------------------------------------------------------
+    // LABORATORIO LIVE CODE PLAYGROUND
+    // -------------------------------------------------------------
+    const presets = {
+      es6: `// ============================================
+// MÓDULO JAVASCRIPT: ES6+ MODERNO
+// ============================================
+
+// 1. Arrow function y Template Literals
+const calcularTotal = (precio, cantidad, iva = 0.19) => {
+  const subtotal = precio * cantidad;
+  const total = subtotal * (1 + iva);
+  return { subtotal, total };
+};
+
+// 2. Destructuring
+const factura = calcularTotal(50000, 3);
+const { subtotal, total } = factura;
+
+console.log("Subtotal:", subtotal);
+console.log("Total con IVA:", total);
+
+// 3. Destructuring de arrays
+const coordenadas = [4.60971, -74.08175];
+const [latitud, longitud] = coordenadas;
+console.log(\`Bogota: Lat \${latitud}, Long \${longitud}\`);`,
+
+      inmutabilidad: `// ============================================
+// MÓDULO JAVASCRIPT: INMUTABILIDAD EN REACT
+// ============================================
+
+const aprendices = [
+  { id: 1, nombre: "Carlos Perez", calificacion: 3.5, activo: true },
+  { id: 2, nombre: "Maria Gomez", calificacion: 4.8, activo: true },
+  { id: 3, nombre: "Julian Ruiz", calificacion: 2.8, activo: false }
+];
+
+// A. Agregar un nuevo aprendiz (Inmutable con Spread)
+const nuevo = { id: 4, nombre: "Laura Soto", calificacion: 4.5, activo: true };
+const listaActualizada = [...aprendices, nuevo];
+console.log("Total aprendices:", listaActualizada.length);
+
+// B. Filtrar solo aprendices aprobados (calificacion >= 3.0)
+const aprobados = listaActualizada.filter(a => a.calificacion >= 3.0 && a.activo);
+console.log("Aprobados:", aprobados.map(a => a.nombre));
+
+// C. Transformar a etiquetas JSX simuladas con .map()
+const renderItems = aprobados.map(a => \`<li>\${a.nombre} - Nota: \${a.calificacion}</li>\`);
+console.log("HTML simulado para React:\\n", renderItems.join("\\n"));
+
+// D. Promedio general con .reduce()
+const promedio = listaActualizada.reduce((acc, a) => acc + a.calificacion, 0) / listaActualizada.length;
+console.log("Promedio general de la ficha:", promedio.toFixed(2));`,
+
+      async: `// ============================================
+// MÓDULO JAVASCRIPT: FLUJO ASÍNCRONO & FETCH
+// ============================================
+
+async function consultarUsuariosSena() {
+  console.log("Iniciando solicitud asincrona hacia la API...");
+  
+  try {
+    const respuesta = await fetch('https://jsonplaceholder.typicode.com/users?_limit=3');
+    
+    if (!respuesta.ok) {
+      throw new Error(\`Error HTTP: \${respuesta.status}\`);
+    }
+
+    const data = await respuesta.json();
+    console.log("Datos recibidos exitosamente:");
+    
+    data.forEach(user => {
+      console.log(\`- [\${user.id}] \${user.name} (\${user.email}) - Empresa: \${user.company.name}\`);
+    });
+    
+  } catch (error) {
+    console.error("Fallo la peticion:", error.message);
+  } finally {
+    console.log("Flujo asincrono finalizado con exito.");
+  }
+}
+
+consultarUsuariosSena();`,
+
+      vacio: `// Escribe aqui tu codigo JavaScript moderno
+console.log("Hola Aprendices ADSO Ficha 3314621!");
+`
+    };
+
+    function applyPresetCode(key) {
+      const codeInput = document.getElementById('code-input');
+      if (codeInput && presets[key]) {
+        codeInput.value = presets[key];
+      }
+    }
+
+    function loadSnippetInLab(key) {
+      switchView('javascript', 'laboratorio');
+      const selector = document.getElementById('preset-selector');
+      if (selector) selector.value = key;
+      applyPresetCode(key);
+      ejecutarCodigoPlayground();
+    }
+
+    function limpiarEditor() {
+      const codeInput = document.getElementById('code-input');
+      if (codeInput) codeInput.value = '';
+    }
+
+    function limpiarConsola() {
+      const output = document.getElementById('code-output');
+      if (output) output.textContent = '';
+    }
+
+    async function ejecutarCodigoPlayground() {
+      const codeInput = document.getElementById('code-input');
+      const output = document.getElementById('code-output');
+      if (!codeInput || !output) return;
+
+      output.textContent = "Ejecutando código en caliente...\n";
+
+      const logs = [];
+      const originalLog = console.log;
+      const originalError = console.error;
+
+      console.log = function(...args) {
+        logs.push(args.map(a => typeof a === 'object' ? JSON.stringify(a, null, 2) : String(a)).join(' '));
+        originalLog.apply(console, args);
+      };
+
+      console.error = function(...args) {
+        logs.push("[ERROR] " + args.map(a => typeof a === 'object' ? JSON.stringify(a, null, 2) : String(a)).join(' '));
+        originalError.apply(console, args);
+      };
+
+      try {
+        const wrapped = `(async () => {\n${codeInput.value}\n})()`;
+        await eval(wrapped);
+
+        output.textContent = logs.length > 0 ? logs.join('\n') : "(El código se ejecutó sin salida de consola)";
+      } catch (err) {
+        output.textContent = logs.join('\n') + `\n❌ Excepción en ejecución:\n${err.message}`;
+      } finally {
+        console.log = originalLog;
+        console.error = originalError;
+      }
+    }
+
+    // Demo de Fetch
+    async function ejecutarFetchDemo() {
+      const statusEl = document.getElementById('fetch-demo-status');
+      const resultEl = document.getElementById('fetch-demo-result');
+      
+      statusEl.textContent = 'Consultando API... (esperando respuesta)';
+      statusEl.className = 'text-xs font-semibold text-amber-500 animate-pulse';
+      resultEl.classList.remove('hidden');
+      resultEl.textContent = 'Cargando datos remotos...';
+
+      try {
+        const res = await fetch('https://jsonplaceholder.typicode.com/users?_limit=4');
+        const data = await res.json();
+        
+        statusEl.textContent = 'Consulta completada con éxito (200 OK)';
+        statusEl.className = 'text-xs font-semibold text-emerald-600';
+        
+        resultEl.textContent = JSON.stringify(data.map(u => ({ id: u.id, nombre: u.name, correo: u.email, ciudad: u.address.city })), null, 2);
+      } catch (err) {
+        statusEl.textContent = 'Error al conectar con la API';
+        statusEl.className = 'text-xs font-semibold text-rose-600';
+        resultEl.textContent = `Error: ${err.message}`;
+      }
+    }
+
+    // -------------------------------------------------------------
+    // CHATBOT BUDDY
+    // -------------------------------------------------------------
+    function toggleBuddyChat() {
+      const win = document.getElementById('buddy-chat-window');
+      if (win) win.classList.toggle('hidden');
+      initLucide();
+    }
+
+    function askBuddy(pregunta) {
+      const input = document.getElementById('buddy-input');
+      if (input) {
+        input.value = pregunta;
+        handleBuddySubmit(new Event('submit'));
+      }
+    }
+
+    function handleBuddySubmit(e) {
+      if (e) e.preventDefault();
+      const input = document.getElementById('buddy-input');
+      const messages = document.getElementById('buddy-messages');
+      if (!input || !input.value.trim() || !messages) return;
+
+      const userText = input.value.trim();
+      input.value = '';
+
+      messages.innerHTML += `
+        <div class="flex items-start justify-end gap-2">
+          <div class="bg-[#45A824] text-white p-3 rounded-2xl rounded-tr-none shadow-xs max-w-[80%] leading-relaxed">
+            ${userText}
+          </div>
+          <span class="text-base">🧑‍💻</span>
+        </div>
+      `;
+
+      setTimeout(() => {
+        let respuesta = "Excelente pregunta. Recuerda que la regla fundamental en React es tratar los datos como inmutables y mantener funciones puras.";
+        const lower = userText.toLowerCase();
+
+        if (lower.includes('push') || lower.includes('mutar') || lower.includes('inmutabilidad')) {
+          respuesta = "¡Ojo! En React nunca usamos <code>.push()</code> porque modifica el arreglo original directamente. Usa siempre el spread operator: <code>setItems([...items, nuevo])</code> o <code>.filter()</code> para eliminar. Así React detecta el nuevo puntero y actualiza el DOM.";
+        } else if (lower.includes('destructuring') || lower.includes('desestructuracion')) {
+          respuesta = "El <strong>Destructuring</strong> te permite 'desempacar' propiedades. En React es vital:<br><code>function Tarjeta({ titulo, precio }) { ... }</code><br>De esta manera evitas escribir <code>props.titulo</code> y <code>props.precio</code> en todo el código.";
+        } else if (lower.includes('async') || lower.includes('await') || lower.includes('promesa') || lower.includes('fetch')) {
+          respuesta = "<strong>async/await</strong> hace que el código asíncrono parezca síncrono. En React, las peticiones HTTP se disparan dentro de un <code>useEffect</code>:<br><code>useEffect(() => { const cargar = async() => { const data = await fetch(...); }; cargar(); }, [])</code>";
+        } else if (lower.includes('react') || lower.includes('vite')) {
+          respuesta = "Para inicializar tu proyecto con el instructor, ejecuta en terminal:<br><code>npm create vite@latest frontend -- --template react</code><br>Vite compila casi instantáneamente gracias a ES Modules nativos.";
+        }
+
+        messages.innerHTML += `
+          <div class="flex items-start gap-2">
+            <span class="text-base">🤖</span>
+            <div class="bg-white p-3 rounded-2xl rounded-tl-none border border-slate-200 shadow-xs text-slate-700 leading-relaxed max-w-[85%]">
+              ${respuesta}
+            </div>
+          </div>
+        `;
+        messages.scrollTop = messages.scrollHeight;
+      }, 350);
+
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    // Modal de Competencia
+    function openModalInfoCompetencia() {
+      const modal = document.getElementById('modal-detalle');
+      const title = document.getElementById('modal-title');
+      const subtitle = document.getElementById('modal-subtitle');
+      const content = document.getElementById('modal-content');
+
+      title.textContent = 'Competencia Laboral SENA';
+      subtitle.textContent = 'Norma Sectorial de Competencia';
+      content.innerHTML = `
+        <div class="space-y-3">
+          <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200">
+            <span class="text-[10px] font-bold text-emerald-800 uppercase block">Denominación Oficial</span>
+            <p class="font-bold text-slate-900 text-sm">DESARROLLAR LA SOLUCIÓN DE SOFTWARE DE ACUERDO CON EL DISEÑO Y METODOLOGÍAS DE DESARROLLO</p>
+          </div>
+          <p><strong>Código de Competencia:</strong> 220501096</p>
+          <p><strong>Programa:</strong> Tecnólogo en Análisis y Desarrollo de Software (ADSO) - Ficha 3314621</p>
+          <p><strong>Enfoque Actual:</strong> Dominio de JavaScript Moderno (ES6+), Inmutabilidad de Estados y Consumo Asíncrono de APIs con rumbo a React 19 + Vite.</p>
+        </div>
+      `;
+      modal.classList.remove('hidden');
+      initLucide();
+    }
+
+    function cerrarModalDetalle() {
+      const modal = document.getElementById('modal-detalle');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    // Accesibilidad SENA
+    let altoContraste = false;
+    function toggleAccesibilidad() {
+      altoContraste = !altoContraste;
+      if (altoContraste) {
+        document.body.classList.add('contrast-125');
+        alert('Modo Alto Contraste Activado conforme a lineamientos SENA.');
+      } else {
+        document.body.classList.remove('contrast-125');
+        alert('Modo Normal Restaurado.');
+      }
+    }
+
+    // Inicializar al cargar el DOM
+    window.addEventListener('DOMContentLoaded', () => {
+      initLucide();
+      initChecklist();
+      applyPresetCode('es6');
+    });
+  </script>
+</body>
+</html>
