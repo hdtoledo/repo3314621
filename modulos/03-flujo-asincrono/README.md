@@ -124,12 +124,12 @@ const consultarAprendicesAPI = async () => {
 
 ---
 
-## 📌 4. Conexión con React: El Hook `useEffect`
+## 📌 4. Conexión con React: El Hook `useEffect` y `AbortController`
 
-En React, el consumo de datos asíncronos se realiza casi siempre dentro del hook `useEffect` gestionando tres estados indispensables:
+> ⚠️ **Regla de Oro en React:** **NUNCA** declares el callback de `useEffect` directamente como `useEffect(async () => { ... }, [])`, porque una función `async` devuelve una Promesa y `useEffect` solo acepta `undefined` o una función de limpieza (*cleanup*). Declara una función `async` interna y usa `AbortController` para cancelar peticiones si el componente se desmonta:
 
 ```jsx
-// Ejemplo en React Component:
+// Ejemplo Profesional en React + Vite:
 import { useState, useEffect } from 'react';
 
 export function ListaUsuarios() {
@@ -138,20 +138,29 @@ export function ListaUsuarios() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     const cargar = async () => {
       try {
-        const res = await fetch('https://jsonplaceholder.typicode.com/users');
-        if (!res.ok) throw new Error('Fallo al cargar usuarios');
+        const res = await fetch('https://jsonplaceholder.typicode.com/users', {
+          signal: controller.signal
+        });
+        if (!res.ok) throw new Error(`Fallo HTTP ${res.status} al cargar usuarios`);
         const data = await res.json();
         setUsuarios(data);
       } catch (err) {
-        setError(err.message);
+        if (err.name !== 'AbortError') {
+          setError(err.message);
+        }
       } finally {
         setCargando(false);
       }
     };
 
     cargar();
+
+    // Función de limpieza: cancela la petición en vuelo si el usuario cambia de vista
+    return () => controller.abort();
   }, []); // [] significa: ejecutar una sola vez al montar el componente
 
   if (cargando) return <p>Cargando información del servidor...</p>;

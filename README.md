@@ -85,6 +85,10 @@ node modulos/02-inmutabilidad/ejercicios.js
 
 # Probar ejercicios Asíncronos
 node modulos/03-flujo-asincrono/ejercicios.js
+
+# Ejecutar la Suite Oficial de 20 Pruebas Automatizadas (5 Retos hacia React + Vite)
+npm test
+npm run validate
 ```
 
 ---
@@ -93,28 +97,29 @@ node modulos/03-flujo-asincrono/ejercicios.js
 
 ```text
 repo3314621/
-├── index.html                           # Aplicación Web Interactiva (UI SI Contratista SENA)
-├── README.md                            # Guía y documentación oficial de la competencia
-├── .gitignore                           # Exclusiones de control de versiones
-├── .github/
-│   └── workflows/
-│       └── deploy.yml                   # Despliegue automático a GitHub Pages
+├── index.html                                   # Aplicación Web Interactiva (UI SI Contratista SENA)
+├── ACTUALIZACION_LECCIONES_Y_EJERCICIOS.md      # Auditoría técnica y cápsulas avanzadas React 19 + Vite
+├── package.json                                 # Scripts de validación automática (node --test)
+├── README.md                                    # Guía y documentación oficial de la competencia
+├── retos/                                       # 5 Retos prácticos resueltos (Referencia Instructor)
+├── plantilla-aprendiz/                          # Plantillas limpias con TODOs para los aprendices
+├── test/                                        # Suite de 20 pruebas con Node Test Runner
 └── modulos/
     ├── 01-javascript-moderno-es6/
-    │   ├── README.md                    # Fundamentos teóricos ES6+
-    │   ├── ejercicios.js                # Prácticas ejecutables en Node.js / Browser
-    │   └── taller-practico.md           # Reto de aula evaluable
+    │   ├── README.md                            # Fundamentos teóricos ES6+, ?. y ??
+    │   ├── ejercicios.js                        # Prácticas ejecutables en Node.js / Browser
+    │   └── taller-practico.md                   # Reto de aula evaluable
     ├── 02-inmutabilidad/
-    │   ├── README.md                    # Filosofía de inmutabilidad para React
-    │   ├── ejercicios.js                # Métodos seguros vs métodos mutables
-    │   └── taller-practico.md           # Reto de transformación de datos e-commerce
+    │   ├── README.md                            # Filosofía de inmutabilidad y useReducer para React
+    │   ├── ejercicios.js                        # Métodos seguros vs métodos mutables
+    │   └── taller-practico.md                   # Reto de transformación de datos e-commerce
     ├── 03-flujo-asincrono/
-    │   ├── README.md                    # Event loop, Promises y Fetch API
-    │   ├── ejercicios.js                # Consumo de servicios REST con async/await
-    │   └── taller-practico.md           # Reto de integración con APIs externas
+    │   ├── README.md                            # Event loop, Promises, Fetch API y AbortController
+    │   ├── ejercicios.js                        # Consumo de servicios REST con async/await
+    │   └── taller-practico.md                   # Reto de integración con APIs externas
     └── 04-camino-a-react-vite/
-        ├── README.md                    # Conexión directa: JS -> React
-        └── guia-instalacion-vite.md     # Creación de proyecto base con Vite
+        ├── README.md                            # Conexión directa: JS -> React 19 + Vite
+        └── guia-instalacion-vite.md             # Creación de proyecto base con Vite y Tailwind v4/v3
 ```
 
 ---

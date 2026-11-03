@@ -1,0 +1,25 @@
+{
+  "name": "adso-3314621-javascript-react-vite",
+  "version": "1.0.0",
+  "description": "SENA CADPH Garzón - ADSO Ficha 3314621: Ruta Práctica de JavaScript Moderno (ES6+), Inmutabilidad y Asincronía hacia React + Vite",
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/validador.test.js",
+    "test:watch": "node --test --watch test/validador.test.js",
+    "validate": "node test/validador-cli.js"
+  },
+  "keywords": [
+    "sena",
+    "adso",
+    "3314621",
+    "javascript",
+    "es6",
+    "inmutabilidad",
+    "react",
+    "vite",
+    "cadph-garzon"
+  ],
+  "author": "Instructor Héctor David Toledo García - SENA Regional Huila (CADPH Garzón)",
+  "license": "MIT"
+}
+

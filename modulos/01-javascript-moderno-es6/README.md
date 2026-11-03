@@ -115,6 +115,23 @@ const [verdeSena, azulSena] = colores;
 const [usuario, setUsuario] = useState(null);
 ```
 
+### C. Encadenamiento Opcional (`?.`) y Coalescencia Nula (`??` vs `||`)
+En componentes React que cargan datos asíncronos, al inicio el objeto puede ser `null` o tener valores numéricos en `0` (ej. `stock: 0` o `descuento: 0`):
+
+```javascript
+// ❌ PELIGRO CON || (OR Lógico) CUANDO EL VALOR ES 0:
+// Como 0 es "falsy" en JS, || lo reemplaza por el valor por defecto:
+const stockRecibido = 0;
+const stockConBug = stockRecibido || 10; // Resultado: 10 (¡Bug en inventario!)
+
+// ✅ SOLUCIÓN CON ?? (Nullish Coalescing - ES2020):
+// Solo usa el fallback si el valor izquierdo es null o undefined:
+const stockReal = stockRecibido ?? 10; // Resultado: 0 (¡Respeta el cero!)
+
+// ✅ OPTIONAL CHAINING (?.) PARA EVITAR "Cannot read properties of undefined":
+const correoSeguro = aprendiz?.contacto?.email ?? "sin-correo@sena.edu.co";
+```
+
 ---
 
 ## 📌 4. Operadores Spread (`...`) y Rest (`...`)
@@ -165,13 +182,17 @@ export default function formatearMoneda(valor) {
 
 // App.js
 import formatearMoneda, { IVA, calcularPrecioFinal } from './helpers/calculos.js';
+
+// Variables de entorno en Vite (prefijo obligatorio VITE_):
+const API_BASE = import.meta.env.VITE_API_URL ?? 'https://api.sena.edu.co';
 ```
 
 ---
 
 ## 💻 Práctica Recomendada
-Ejecuta el archivo complementario en tu terminal:
+Ejecuta el archivo complementario o la suite automatizada de 20 pruebas en tu terminal:
 ```bash
 node modulos/01-javascript-moderno-es6/ejercicios.js
+npm test
 ```
 O ábrelo en el **Laboratorio Live Code** de la plataforma web en `index.html`.

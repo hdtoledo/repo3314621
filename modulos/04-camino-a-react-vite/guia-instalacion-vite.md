@@ -53,9 +53,32 @@ npm install
 
 Para que tu proyecto mantenga el estilo visual SENA:
 
+### Opción A: Tailwind CSS v4 (Estándar Actual para Vite)
 ```bash
-# Instalar Tailwind CSS y sus procesadores
-npm install -D tailwindcss postcss autoprefixer
+# 1. Instalar Tailwind CSS v4 y el plugin oficial de Vite
+npm install tailwindcss @tailwindcss/vite
+```
+
+En `vite.config.js`:
+```javascript
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+})
+```
+
+En `src/index.css`:
+```css
+@import "tailwindcss";
+```
+
+### Opción B: Tailwind CSS v3 (Configuración Clásica)
+```bash
+# Instalar Tailwind CSS v3 y sus procesadores
+npm install -D tailwindcss@3 postcss autoprefixer
 
 # Generar archivos de configuración (tailwind.config.js y postcss.config.js)
 npx tailwindcss init -p

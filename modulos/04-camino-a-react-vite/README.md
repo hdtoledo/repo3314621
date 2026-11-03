@@ -85,7 +85,8 @@ export function ContadorAsistencia() {
 
   const registrarLlegada = () => {
     // NUNCA asistencias++ (Mutación)
-    setAsistencias(asistencias + 1); // ✅ Inmutable
+    // ✅ Patrón Updater Function (evita bugs de Stale Closure en llamadas consecutivas):
+    setAsistencias(prevAsistencias => prevAsistencias + 1);
   };
 
   return (
@@ -132,6 +133,24 @@ export function CatalogoCursos() {
     </div>
   );
 }
+```
+
+---
+
+## 📌 4. La Trampa del `0` en JSX (`&&` vs Operador Ternario `? :`)
+
+En React, los valores booleanos (`true`, `false`), `null` y `undefined` no se dibujan en pantalla, **pero el número `0` SÍ se renderiza en el DOM**.
+
+```jsx
+// ❌ ERROR CLÁSICO EN JSX:
+// Si producto.stock es 0, React imprime un "0" visible en la pantalla:
+{producto.stock && <span className="badge">Disponible</span>}
+
+// ✅ SOLUCIÓN 1: Comparación booleana explícita (> 0)
+{producto.stock > 0 && <span className="badge">Disponible</span>}
+
+// ✅ SOLUCIÓN 2: Operador Ternario (? :)
+{producto.stock > 0 ? <span className="badge">Disponible</span> : <span>Agotado</span>}
 ```
 
 ---

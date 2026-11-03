@@ -127,6 +127,16 @@ const calcularPromedioGrupal = (nombreGrupo, ...calificaciones) => {
 
 console.log(calcularPromedioGrupal("Equipo Frontend Alpha", 4.5, 4.8, 3.9, 5.0, 4.2));
 
+// -----------------------------------------------------------------
+// 5. OPTIONAL CHAINING (?.) Y NULLISH COALESCING (?? vs ||)
+// -----------------------------------------------------------------
+console.log("\n📌 5. Optional Chaining (?.) y Nullish Coalescing (?? vs || con 0):");
+const productoGratis = { id: 501, nombre: "Muestra Café Orgánico Garzón", precio: 0, stock: 0, proveedor: null };
+
+console.log(`   ❌ Con || (Bug cuando precio es 0): $${productoGratis.precio || 25000}`);
+console.log(`   ✅ Con ?? (Respeta el 0 legítimo):  $${productoGratis.precio ?? 25000}`);
+console.log(`   ✅ Optional Chaining seguro:        ${productoGratis?.proveedor?.correo ?? "sin-proveedor@sena.edu.co"}`);
+
 console.log("\n=================================================");
 console.log("✅ FIN DE EJERCICIOS MÓDULO 01");
 console.log("=================================================");

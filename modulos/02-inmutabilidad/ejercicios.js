@@ -114,6 +114,32 @@ const itemsPorCategoria = inventarioConDescuento.reduce((acumulador, prod) => {
 
 console.log("   Agrupación por categoría:", itemsPorCategoria);
 
+// -----------------------------------------------------------------
+// 6. ORDENAMIENTO INMUTABLE Y PATRÓN USEREDUCER DE REACT
+// -----------------------------------------------------------------
+console.log("\n📌 6. Ordenamiento Inmutable ([...arr].sort) y Patrón useReducer:");
+
+const ordenadosPorPrecio = [...inventarioConDescuento].sort((a, b) => a.precio - b.precio);
+console.log(`   Más económico: ${ordenadosPorPrecio[0].item} ($${ordenadosPorPrecio[0].precio})`);
+console.log(`   ¿Orden original intacto?: ${inventarioConDescuento[0].id === 101 ? "✅ SÍ" : "❌ NO"}`);
+
+function carritoReducer(state = { items: [], total: 0 }, action) {
+  switch (action.type) {
+    case "AGREGAR":
+      return {
+        ...state,
+        items: [...state.items, action.payload],
+        total: state.total + action.payload.precio
+      };
+    default:
+      return state;
+  }
+}
+
+const estado1 = { items: [], total: 0 };
+const estado2 = carritoReducer(estado1, { type: "AGREGAR", payload: { id: 1, precio: 85000 } });
+console.log(`   useReducer Inmutable -> Object.is(estado1, estado2) === false: ${!Object.is(estado1, estado2)}`);
+
 console.log("\n=================================================");
 console.log("✅ FIN DE EJERCICIOS MÓDULO 02");
 console.log("=================================================");

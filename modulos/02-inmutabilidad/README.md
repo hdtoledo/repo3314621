@@ -39,8 +39,8 @@ flowchart TD
 | **Agregar al inicio** | `array.unshift(item)` | `[item, ...array]` |
 | **Eliminar por ID o índice** | `array.splice(index, 1)` | `array.filter(item => item.id !== id)` |
 | **Modificar un elemento** | `array[index].precio = 50` | `array.map(i => i.id === id ? {...i, precio: 50} : i)` |
-| **Ordenar elementos** | `array.sort()` | `[...array].sort((a, b) => ...)` |
-| **Invertir orden** | `array.reverse()` | `[...array].reverse()` |
+| **Ordenar elementos** | `array.sort()` | `[...array].sort((a, b) => ...)` o `array.toSorted(...)` |
+| **Invertir orden** | `array.reverse()` | `[...array].reverse()` o `array.toReversed()` |
 
 ---
 
@@ -112,6 +112,31 @@ const aprendizActualizado = {
     practica: 4.8 // Se actualiza la propiedad anidada
   }
 };
+```
+
+---
+
+## 📌 4. De `.reduce()` al Hook `useReducer` en React (Cero Mutación)
+
+Cuando utilices `.reduce()` como base para un `reducer(state, action)` en React, **nunca hagas `state.items.push(...)`**. Retorna siempre un nuevo objeto y un nuevo arreglo con el operador spread:
+
+```javascript
+export function carritoReducer(state = { items: [], total: 0 }, action) {
+  switch (action.type) {
+    case "AGREGAR_PRODUCTO": {
+      const nuevo = action.payload;
+      return {
+        ...state,
+        items: [...state.items, nuevo],
+        total: state.total + (nuevo.precio * nuevo.cantidad)
+      };
+    }
+    case "VACIAR_CARRITO":
+      return { items: [], total: 0 };
+    default:
+      return state;
+  }
+}
 ```
 
 ---
