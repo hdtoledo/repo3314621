@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nivelación ADSO 3314621 · 30 Slides & Laboratorio Dinámico JS hacia React + Vite</title>
+  <title>Laboratorio Interactivo JS · ADSO 3314621 · 30 Slides hacia React + Vite</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,7 +21,7 @@
 </head>
 <body class="min-h-screen flex flex-col text-slate-900 bg-[#F8FAFC]">
 
-  <!-- Barra Institucional Superior SENA CADPH (Idéntica a Imagen 2) -->
+  <!-- Barra Institucional Superior SENA CADPH -->
   <div class="bg-[#0B192C] text-slate-200 text-xs px-4 py-1.5 border-b border-slate-800">
     <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
       <div class="flex items-center gap-2">
@@ -31,37 +31,34 @@
         <span class="text-emerald-400 font-semibold hidden sm:inline">Regional Huila</span>
       </div>
       <div class="flex items-center gap-3 text-[11px] text-slate-300">
+        <a href="./index.html" class="text-emerald-400 hover:underline font-bold">← Volver al Dashboard SI Formación</a>
+        <span>•</span>
         <span>Sede Garzón</span>
         <span>•</span>
         <span class="text-emerald-400 font-bold">Ficha ADSO 3314621</span>
-        <span>•</span>
-        <span>Competencia: Desarrollar Solución de Software (JS → React + Vite)</span>
       </div>
     </div>
   </div>
 
-  <!-- Barra de Navegación de Presentación 1 / 30 (Idéntica a Imagen 2) -->
+  <!-- Barra de Navegación de Presentación 1 / 30 -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 py-2.5 flex flex-wrap items-center justify-between gap-3">
-      <!-- Marca Izquierda -->
       <div class="flex items-center gap-3">
         <button onclick="goToSlide(1)" class="flex items-center gap-2.5 text-left group">
           <div class="w-9 h-9 rounded-xl bg-[#39A900] text-white font-extrabold flex items-center justify-center text-sm shadow-sm group-hover:bg-[#2D8200] transition">
-            SI
+            JS
           </div>
           <div>
             <div class="flex items-center gap-1.5">
-              <span class="font-extrabold text-sm tracking-tight text-slate-900">NIVELACIÓN ADSO</span>
-              <span class="px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 font-bold text-[10px]">CADPH</span>
+              <span class="font-extrabold text-sm tracking-tight text-slate-900">LABORATORIO INTERACTIVO JS</span>
+              <span class="px-1.5 py-0.5 rounded bg-[#EAF6E5] text-[#2D8200] font-bold text-[10px]">ADSO 3314621</span>
             </div>
-            <p class="text-[11px] text-slate-500 hidden md:block">JavaScript Moderno (ES6+), Inmutabilidad y Asincronía para React + Vite</p>
+            <p class="text-[11px] text-slate-500 hidden md:block">Entrenamiento Práctico de JavaScript Moderno (ES6+), Inmutabilidad y Asincronía para React + Vite</p>
           </div>
         </button>
       </div>
 
-      <!-- Controles Centrales y Derechos -->
       <div class="flex flex-wrap items-center gap-2">
-        <!-- Cronómetro de Aula -->
         <div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-slate-100 border border-slate-200 text-xs">
           <span>⏱️</span>
           <span id="timer-display" class="font-mono font-bold text-slate-800">00:00</span>
@@ -71,19 +68,16 @@
           <button onclick="resetTimer()" class="text-slate-400 hover:text-slate-700 px-1" title="Reiniciar cronómetro">↺</button>
         </div>
 
-        <!-- Badge Global de los 30 Ejercicios -->
         <button onclick="toggleIndexModal()" class="px-3 py-1.5 rounded-xl bg-[#EAF6E5] hover:bg-emerald-100 border border-[#39A900]/30 text-[#2D8200] text-xs font-extrabold flex items-center gap-1.5 transition" title="Ver progreso de los 30 ejercicios">
           <span>🏆</span>
           <span id="global-score-badge">0 / 30 Ejercicios</span>
         </button>
 
-        <!-- Botón Índice de 30 Slides -->
         <button onclick="toggleIndexModal()" class="px-2.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold border border-slate-200 flex items-center gap-1" title="Abrir índice de las 30 diapositivas">
           <span>☰</span>
           <span class="hidden md:inline">Índice</span>
         </button>
 
-        <!-- Contador 1 / 30 y Flechas -->
         <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-xl border border-slate-200">
           <button onclick="prevSlide()" class="w-7 h-7 rounded-lg bg-white hover:bg-slate-50 text-slate-700 font-bold text-xs border border-slate-200 flex items-center justify-center" title="Anterior (Flecha Izquierda)">
             ‹
@@ -96,25 +90,21 @@
           </button>
         </div>
 
-        <!-- Pantalla Completa -->
         <button onclick="toggleFullScreen()" class="hidden sm:flex w-8 h-8 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 items-center justify-center border border-slate-200 text-xs font-bold" title="Pantalla Completa">
           ⛶
         </button>
 
-        <!-- Exportar Evidencia JSON -->
         <button onclick="exportProgressReport()" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition" title="Descargar reporte de sustentación de los 30 ejercicios">
           <span>⬇ Evidencia (.json)</span>
         </button>
       </div>
     </div>
 
-    <!-- Barra de progreso lineal de las 30 diapositivas -->
     <div class="w-full h-1 bg-slate-100">
       <div id="slide-progress-bar" class="h-1 bg-[#39A900] transition-all duration-200" style="width: 3.33%"></div>
     </div>
   </header>
 
-  <!-- Contenido Principal: Las 30 Diapositivas -->
   <main class="flex-1 pb-12">
     
   <section data-slide="1" class="slide-section active max-w-7xl mx-auto px-4 sm:px-6 py-8">
@@ -133,7 +123,7 @@
       </p>
     </div>
 
-    <!-- 3 Bloques Pedagógicos estilo ADSO 3293992 (Imagen 2) -->
+    <!-- 3 Bloques Pedagógicos estilo ADSO 3293992 -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
       <div class="bg-white rounded-2xl border-t-4 border-t-[#39A900] border border-slate-200 p-6 shadow-sm">
         <div class="flex items-center justify-between mb-3">
@@ -181,7 +171,7 @@
       </div>
     </div>
 
-    <!-- Tarjeta de Sesión estilo ADSO 3293992 (Imagen 1) -->
+    <!-- Tarjeta de Sesión estilo ADSO 3293992 -->
     <div class="bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm mb-8">
       <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
         <div class="space-y-3 max-w-3xl">
@@ -214,9 +204,9 @@
             <div>
               <div class="flex items-center justify-between text-xs font-bold mb-2">
                 <span class="px-2.5 py-0.5 rounded bg-slate-200 text-slate-800">MÓDULO 1 · Slides 2–5</span>
-                <span id="home-mod-badge-lab1" class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">0 / 5 resueltos</span>
+                <span class="mod-progress-badge-lab1 text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">0 / 5 resueltos</span>
               </div>
-              <h4 class="font-extrabold text-slate-900 text-sm mb-1">Mentalidad React & Operadores JSX</h4>
+              <h4 class="font-extrabold text-slate-900 text-sm mb-1">Mentalidad React &amp; Operadores JSX</h4>
               <p class="text-xs text-slate-600 leading-relaxed mb-3">UI = f(state), Stack vs Heap, Object.is(), Optional Chaining (?.) y Nullish (?? vs ||).</p>
             </div>
             <div class="flex items-center gap-2 pt-2 border-t border-slate-200/70">
@@ -233,10 +223,10 @@
             <div>
               <div class="flex items-center justify-between text-xs font-bold mb-2">
                 <span class="px-2.5 py-0.5 rounded bg-slate-200 text-slate-800">MÓDULO 2 · Slides 6–10</span>
-                <span id="home-mod-badge-lab2" class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">0 / 5 resueltos</span>
+                <span class="mod-progress-badge-lab2 text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">0 / 5 resueltos</span>
               </div>
-              <h4 class="font-extrabold text-slate-900 text-sm mb-1">Arrow Functions, Closures & Destructuring</h4>
-              <p class="text-xs text-slate-600 leading-relaxed mb-3">Retorno implícito () => ({}), Updater prev => prev + 1, Props y [state, setState].</p>
+              <h4 class="font-extrabold text-slate-900 text-sm mb-1">Arrow Functions, Closures &amp; Destructuring</h4>
+              <p class="text-xs text-slate-600 leading-relaxed mb-3">Retorno implícito () =&gt; ({}), Updater prev =&gt; prev + 1, Props y [state, setState].</p>
             </div>
             <div class="flex items-center gap-2 pt-2 border-t border-slate-200/70">
               <button onclick="goToSlide(6)" class="flex-1 py-1.5 px-3 rounded-lg bg-white border border-slate-300 hover:border-slate-400 text-slate-800 text-xs font-bold transition">
@@ -252,9 +242,9 @@
             <div>
               <div class="flex items-center justify-between text-xs font-bold mb-2">
                 <span class="px-2.5 py-0.5 rounded bg-slate-200 text-slate-800">MÓDULO 3 · Slides 11–15</span>
-                <span id="home-mod-badge-lab3" class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">0 / 5 resueltos</span>
+                <span class="mod-progress-badge-lab3 text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">0 / 5 resueltos</span>
               </div>
-              <h4 class="font-extrabold text-slate-900 text-sm mb-1">Inmutabilidad & Patrones CRUD Spread</h4>
+              <h4 class="font-extrabold text-slate-900 text-sm mb-1">Inmutabilidad &amp; Patrones CRUD Spread</h4>
               <p class="text-xs text-slate-600 leading-relaxed mb-3">Formularios [name]: value, Deep Spread, prohibición de .push/.splice y CRUD en useState.</p>
             </div>
             <div class="flex items-center gap-2 pt-2 border-t border-slate-200/70">
@@ -271,7 +261,7 @@
             <div>
               <div class="flex items-center justify-between text-xs font-bold mb-2">
                 <span class="px-2.5 py-0.5 rounded bg-slate-200 text-slate-800">MÓDULO 4 · Slides 16–20</span>
-                <span id="home-mod-badge-lab4" class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">0 / 5 resueltos</span>
+                <span class="mod-progress-badge-lab4 text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">0 / 5 resueltos</span>
               </div>
               <h4 class="font-extrabold text-slate-900 text-sm mb-1">Métodos Declarativos de Arreglos</h4>
               <p class="text-xs text-slate-600 leading-relaxed mb-3">.map() + key, .filter() multicriterio, .find(), .some(), .every() y [...arr].sort().</p>
@@ -290,9 +280,9 @@
             <div>
               <div class="flex items-center justify-between text-xs font-bold mb-2">
                 <span class="px-2.5 py-0.5 rounded bg-slate-200 text-slate-800">MÓDULO 5 · Slides 21–25</span>
-                <span id="home-mod-badge-lab5" class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">0 / 5 resueltos</span>
+                <span class="mod-progress-badge-lab5 text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">0 / 5 resueltos</span>
               </div>
-              <h4 class="font-extrabold text-slate-900 text-sm mb-1">Reduce, useReducer & Módulos Vite</h4>
+              <h4 class="font-extrabold text-slate-900 text-sm mb-1">Reduce, useReducer &amp; Módulos Vite</h4>
               <p class="text-xs text-slate-600 leading-relaxed mb-3">.reduce() financiero, indexación O(1), funciones reducer puras e import.meta.env.</p>
             </div>
             <div class="flex items-center gap-2 pt-2 border-t border-slate-200/70">
@@ -309,9 +299,9 @@
             <div>
               <div class="flex items-center justify-between text-xs font-bold mb-2">
                 <span class="px-2.5 py-0.5 rounded bg-slate-200 text-slate-800">MÓDULO 6 · Slides 26–30</span>
-                <span id="home-mod-badge-lab6" class="text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">0 / 5 resueltos</span>
+                <span class="mod-progress-badge-lab6 text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">0 / 5 resueltos</span>
               </div>
-              <h4 class="font-extrabold text-slate-900 text-sm mb-1">Event Loop, Async/Await & Fetch API</h4>
+              <h4 class="font-extrabold text-slate-900 text-sm mb-1">Event Loop, Async/Await &amp; Fetch API</h4>
               <p class="text-xs text-slate-600 leading-relaxed mb-3">Microtasks vs Macrotasks, try/catch/finally, Promise.all/allSettled y AbortController.</p>
             </div>
             <div class="flex items-center gap-2 pt-2 border-t border-slate-200/70">
@@ -332,7 +322,7 @@
     <div class="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-5">
       <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
         <span class="px-3 py-1 rounded-full bg-[#EAF6E5] text-[#2D8200] text-xs font-extrabold tracking-wide">
-          MÓDULO 1 · MENTALIDAD REACT & OPERADORES JSX
+          MÓDULO 1 · MENTALIDAD REACT &amp; OPERADORES JSX
         </span>
         <span class="text-xs font-bold text-slate-400">DIAPOSITIVA TEÓRICO-DEMOSTRATIVA 2 DE 30</span>
       </div>
@@ -391,15 +381,18 @@ function TarjetaProducto({ stock }) {
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Motor UI = f(state)
+            <span>Simulador en Vivo: Motor UI = f(state)</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(2)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
           
+          <button onclick="nextSlide()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+            Siguiente Slide (3/30) →
+          </button>
         </div>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -430,7 +423,7 @@ return {
     <div class="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-5">
       <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
         <span class="px-3 py-1 rounded-full bg-[#EAF6E5] text-[#2D8200] text-xs font-extrabold tracking-wide">
-          MÓDULO 1 · MENTALIDAD REACT & OPERADORES JSX
+          MÓDULO 1 · MENTALIDAD REACT &amp; OPERADORES JSX
         </span>
         <span class="text-xs font-bold text-slate-400">DIAPOSITIVA TEÓRICO-DEMOSTRATIVA 3 DE 30</span>
       </div>
@@ -491,15 +484,18 @@ const subirPuntos = () =&gt; {
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Detector Object.is() de React
+            <span>Simulador en Vivo: Detector Object.is() de React</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(3)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
           
+          <button onclick="nextSlide()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+            Siguiente Slide (4/30) →
+          </button>
         </div>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -531,11 +527,11 @@ return { reactRenderizaMutado, reactRenderizaInmutable };</textarea>
     <div class="bg-white rounded-2xl border border-slate-200 p-5 sm:p-6 shadow-sm mb-5">
       <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
         <span class="px-3 py-1 rounded-full bg-[#EAF6E5] text-[#2D8200] text-xs font-extrabold tracking-wide">
-          MÓDULO 1 · MENTALIDAD REACT & OPERADORES JSX
+          MÓDULO 1 · MENTALIDAD REACT &amp; OPERADORES JSX
         </span>
         <span class="text-xs font-bold text-slate-400">DIAPOSITIVA TEÓRICO-DEMOSTRATIVA 4 DE 30</span>
       </div>
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Operadores Críticos para JSX: ?., ?? vs || y Ternario vs &&</h2>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Operadores Críticos para JSX: ?., ?? vs || y Ternario vs &amp;&amp;</h2>
       <p class="text-sm sm:text-base text-slate-600 mt-1">Evita pantallas blancas por null/undefined y el famoso bug del número 0 impreso en pantalla.</p>
 
       <!-- Conceptos Clave -->
@@ -546,7 +542,7 @@ return { reactRenderizaMutado, reactRenderizaInmutable };</textarea>
         <ul class="space-y-1.5 text-xs sm:text-sm text-slate-700">
           <li class="flex items-start gap-2"><span class="text-[#39A900] font-extrabold mt-0.5">•</span><span><strong>Optional Chaining (<code>?.</code>):</strong> Detiene la evaluación si una propiedad es <code>null</code> o <code>undefined</code> antes de que la API responda.</span></li>
 <li class="flex items-start gap-2"><span class="text-[#39A900] font-extrabold mt-0.5">•</span><span><strong>Nullish Coalescing (<code>??</code>) vs OR (<code>||</code>):</strong> <code>0 || 10</code> devuelve <code>10</code> (¡borra el cero!). En cambio, <code>0 ?? 10</code> respeta el <code>0</code> porque solo reemplaza <code>null</code> o <code>undefined</code>.</span></li>
-<li class="flex items-start gap-2"><span class="text-[#39A900] font-extrabold mt-0.5">•</span><span><strong>La trampa del <code>0</code> con <code>&&</code> en JSX:</strong> En React, <code>{items.length && <Lista />}</code> imprime un <code>"0"</code> literal en el HTML cuando el arreglo está vacío. Usa siempre <code>items.length > 0 ? ... : ...</code>.</span></li>
+<li class="flex items-start gap-2"><span class="text-[#39A900] font-extrabold mt-0.5">•</span><span><strong>La trampa del <code>0</code> con <code>&amp;&amp;</code> en JSX:</strong> En React, <code>{items.length &amp;&amp; &lt;Lista /&gt;}</code> imprime un <code>"0"</code> literal en el HTML cuando el arreglo está vacío. Usa siempre <code>items.length &gt; 0 ? ... : ...</code>.</span></li>
         </ul>
       </div>
     </div>
@@ -555,13 +551,13 @@ return { reactRenderizaMutado, reactRenderizaInmutable };</textarea>
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
       <div class="bg-white rounded-2xl border border-rose-200 overflow-hidden shadow-sm flex flex-col">
         <div class="bg-rose-50 px-4 py-2.5 border-b border-rose-200 flex items-center justify-between">
-          <span class="text-xs font-extrabold text-rose-800">❌ Bugs Clásicos con || y && en JSX</span>
+          <span class="text-xs font-extrabold text-rose-800">❌ Bugs Clásicos con || y &amp;&amp; en JSX</span>
           <span class="text-[11px] font-mono bg-rose-100 text-rose-700 px-2 py-0.5 rounded">Evitar en React</span>
         </div>
         <pre class="p-4 text-xs sm:text-sm font-mono bg-slate-900 text-rose-200 overflow-x-auto flex-1 leading-relaxed"><code>// 1. Si descuento es 0%, || lo pisa con 15%
 const desc = producto.descuento || 15;
 
-// 2. Si notificaciones es 0, React pinta un "0" en pantalla
+// 2. Si notificaciones es 0, React pinta un &quot;0&quot; en pantalla
 return (
   &lt;div&gt;
     {notificaciones &amp;&amp; &lt;span&gt;Tienes alertas&lt;/span&gt;}
@@ -593,11 +589,11 @@ return (
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Comparativa ?? vs || con el valor 0
+            <span>Simulador en Vivo: Comparativa ?? vs || con el valor 0</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(4)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
@@ -633,7 +629,7 @@ return {
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-emerald-300 text-xs font-extrabold mb-2">
-            <span>🧪 MÓDULO 1 · FUNDAMENTOS & OPERADORES JSX · VALIDACIÓN AUTOMÁTICA EN PLATAFORMA</span>
+            <span>🧪 MÓDULO 1 · FUNDAMENTOS &amp; OPERADORES JSX · VALIDACIÓN AUTOMÁTICA EN PLATAFORMA</span>
           </div>
           <h2 class="text-xl sm:text-2xl font-extrabold">Laboratorio Dinámico 1: const/let, Memoria y Operadores para JSX (?. / ?? / ? :)</h2>
           <p class="text-xs sm:text-sm text-slate-200 mt-1">Resuelve y valida en vivo los 5 ejercicios fundamentales sobre ámbito de bloque, referencias en memoria y operadores seguros para renderizado en React.</p>
@@ -684,7 +680,7 @@ return {
             onclick="selectLabExercise('lab1', 3)"
             class="lab-ex-tab-lab1 px-3 py-2.5 rounded-xl text-left border transition flex items-center justify-between bg-white/10 text-white border-white/15 hover:bg-white/20 font-semibold"
           >
-            <span class="text-xs truncate">Ej. 4: Evitando la Trampa del 0 en JSX (Cortocircuito && vs Ternario)</span>
+            <span class="text-xs truncate">Ej. 4: Evitando la Trampa del 0 en JSX (Cortocircuito &amp;&amp; vs Ternario)</span>
             <span id="tab-status-m1e4" class="ml-1 text-xs">⚪</span>
           </button>
         
@@ -815,7 +811,7 @@ return {
         </span>
         <span class="text-xs font-bold text-slate-400">DIAPOSITIVA TEÓRICO-DEMOSTRATIVA 6 DE 30</span>
       </div>
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Arrow Functions y Retorno Implícito de Objetos () => ({})</h2>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Arrow Functions y Retorno Implícito de Objetos () =&gt; ({})</h2>
       <p class="text-sm sm:text-base text-slate-600 mt-1">La sintaxis estándar para definir componentes funcionales, callbacks de eventos y transformaciones.</p>
 
       <!-- Conceptos Clave -->
@@ -848,7 +844,7 @@ const crearOpcion = (id, nombre) =&gt; {
 
       <div class="bg-white rounded-2xl border border-emerald-200 overflow-hidden shadow-sm flex flex-col">
         <div class="bg-emerald-50 px-4 py-2.5 border-b border-emerald-200 flex items-center justify-between">
-          <span class="text-xs font-extrabold text-emerald-800">✅ Retorno Implícito Correcto: () => ({})</span>
+          <span class="text-xs font-extrabold text-emerald-800">✅ Retorno Implícito Correcto: () =&gt; ({})</span>
           <span class="text-[11px] font-mono bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded">Estándar React + Vite</span>
         </div>
         <pre class="p-4 text-xs sm:text-sm font-mono bg-slate-900 text-emerald-200 overflow-x-auto flex-1 leading-relaxed"><code>// Los paréntesis envuelven el objeto literal
@@ -866,15 +862,18 @@ const crearOpcion = (id, nombre) =&gt; ({
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Transformador de Opciones para <Select />
+            <span>Simulador en Vivo: Transformador de Opciones para &lt;Select /&gt;</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(6)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
           
+          <button onclick="nextSlide()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+            Siguiente Slide (7/30) →
+          </button>
         </div>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -908,7 +907,7 @@ return [
         </span>
         <span class="text-xs font-bold text-slate-400">DIAPOSITIVA TEÓRICO-DEMOSTRATIVA 7 DE 30</span>
       </div>
-      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Closures y Updater Functions en useState: prev => prev + 1</h2>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">Closures y Updater Functions en useState: prev =&gt; prev + 1</h2>
       <p class="text-sm sm:text-base text-slate-600 mt-1">Cómo evitar el bug de Stale State (estado obsoleto) cuando actualizas el estado múltiples veces.</p>
 
       <!-- Conceptos Clave -->
@@ -964,15 +963,18 @@ return [
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Cola de Ejecución de useState
+            <span>Simulador en Vivo: Cola de Ejecución de useState</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(7)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
           
+          <button onclick="nextSlide()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+            Siguiente Slide (8/30) →
+          </button>
         </div>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -1068,15 +1070,18 @@ return {
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Extractor de Props con Alias y Defaults
+            <span>Simulador en Vivo: Extractor de Props con Alias y Defaults</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(8)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
           
+          <button onclick="nextSlide()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+            Siguiente Slide (9/30) →
+          </button>
         </div>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -1148,7 +1153,7 @@ function InputSena({ label, error, ...inputProps }) {
   return (
     &lt;label&gt;
       {label}
-      &lt;input className="border p-2" {...inputProps} /&gt;
+      &lt;input className=&quot;border p-2&quot; {...inputProps} /&gt;
     &lt;/label&gt;
   );
 }</code></pre>
@@ -1161,11 +1166,11 @@ function InputSena({ label, error, ...inputProps }) {
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Simulación de Hook [state, setState] y Rest Props
+            <span>Simulador en Vivo: Simulación de Hook [state, setState] y Rest Props</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(9)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
@@ -1201,9 +1206,9 @@ return {
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-emerald-300 text-xs font-extrabold mb-2">
-            <span>🧪 MÓDULO 2 · ARROW FUNCTIONS & DESESTRUCTURACIÓN · VALIDACIÓN AUTOMÁTICA EN PLATAFORMA</span>
+            <span>🧪 MÓDULO 2 · ARROW FUNCTIONS &amp; DESESTRUCTURACIÓN · VALIDACIÓN AUTOMÁTICA EN PLATAFORMA</span>
           </div>
-          <h2 class="text-xl sm:text-2xl font-extrabold">Laboratorio Dinámico 2: Arrow Functions, Updaters y Desestructuración (Props & Hooks)</h2>
+          <h2 class="text-xl sm:text-2xl font-extrabold">Laboratorio Dinámico 2: Arrow Functions, Updaters y Desestructuración (Props &amp; Hooks)</h2>
           <p class="text-xs sm:text-sm text-slate-200 mt-1">Valida tus conocimientos sobre retorno implícito de objetos, funciones actualizadoras de estado y desestructuración de props y tuplas.</p>
         </div>
         <div class="flex items-center gap-3 bg-slate-900/50 border border-white/15 rounded-2xl px-4 py-3 shrink-0">
@@ -1407,7 +1412,7 @@ return {
         </div>
         <pre class="p-4 text-xs sm:text-sm font-mono bg-slate-900 text-rose-200 overflow-x-auto flex-1 leading-relaxed"><code>const [form, setForm] = useState({ nombre: 'Juan', correo: 'j@sena.edu.co' });
 
-// ⚠️ ¡Peligro! Esto borra la propiedad "correo"
+// ⚠️ ¡Peligro! Esto borra la propiedad &quot;correo&quot;
 const cambiarNombre = (nuevoNombre) =&gt; {
   setForm({ nombre: nuevoNombre });
 };</code></pre>
@@ -1435,15 +1440,18 @@ const handleChange = (campo, valor) =&gt; {
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Actualizador Dinámico de Formulario
+            <span>Simulador en Vivo: Actualizador Dinámico de Formulario</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(11)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
           
+          <button onclick="nextSlide()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+            Siguiente Slide (12/30) →
+          </button>
         </div>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -1500,7 +1508,7 @@ return { formInicialSinMutar: formInicial, resultadoFinal: paso2 };</textarea>
           <span class="text-[11px] font-mono bg-rose-100 text-rose-700 px-2 py-0.5 rounded">Evitar en React</span>
         </div>
         <pre class="p-4 text-xs sm:text-sm font-mono bg-slate-900 text-rose-200 overflow-x-auto flex-1 leading-relaxed"><code>const copia = { ...usuario };
-// ⚠️ ¡Sigue mutando al usuario original porque "direccion"
+// ⚠️ ¡Sigue mutando al usuario original porque &quot;direccion&quot;
 // comparte la misma referencia en el Heap!
 copia.direccion.ciudad = 'Neiva';</code></pre>
       </div>
@@ -1527,15 +1535,18 @@ copia.direccion.ciudad = 'Neiva';</code></pre>
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Verificación de Referencias Anidadas
+            <span>Simulador en Vivo: Verificación de Referencias Anidadas</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(12)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
           
+          <button onclick="nextSlide()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+            Siguiente Slide (13/30) →
+          </button>
         </div>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -1625,15 +1636,18 @@ const agregar = (nueva) =&gt; {
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Inserción en Índice Específico con .slice()
+            <span>Simulador en Vivo: Inserción en Índice Específico con .slice()</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(13)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
           
+          <button onclick="nextSlide()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+            Siguiente Slide (14/30) →
+          </button>
         </div>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -1720,11 +1734,11 @@ return { originalIntacto: modulos, nuevoArreglo: resultado };</textarea>
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Upsert de Carrito de Compras
+            <span>Simulador en Vivo: Upsert de Carrito de Compras</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(14)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
@@ -1765,7 +1779,7 @@ return paso2;</textarea>
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-emerald-300 text-xs font-extrabold mb-2">
-            <span>🧪 MÓDULO 3 · INMUTABILIDAD & SPREAD OPERATOR (...) · VALIDACIÓN AUTOMÁTICA EN PLATAFORMA</span>
+            <span>🧪 MÓDULO 3 · INMUTABILIDAD &amp; SPREAD OPERATOR (...) · VALIDACIÓN AUTOMÁTICA EN PLATAFORMA</span>
           </div>
           <h2 class="text-xl sm:text-2xl font-extrabold">Laboratorio Dinámico 3: Clonado Inmutable, Deep Spread y CRUD de Estado (useState)</h2>
           <p class="text-xs sm:text-sm text-slate-200 mt-1">Domina las 5 operaciones de actualización de estado sin mutar jamás los objetos ni arreglos originales en memoria.</p>
@@ -1997,15 +2011,18 @@ return paso2;</textarea>
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Proyección de Datos de API a Props de Tarjeta UI
+            <span>Simulador en Vivo: Proyección de Datos de API a Props de Tarjeta UI</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(16)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
           
+          <button onclick="nextSlide()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+            Siguiente Slide (17/30) →
+          </button>
         </div>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -2019,7 +2036,7 @@ return paso2;</textarea>
 return aprendices.map(a =&gt; ({
   key: a.doc,
   titulo: a.nombre.toUpperCase(),
-  badge: a.nota &gt;= 70 ? '✅ APROBADO' : '⚠️ NIVELACIÓN'
+  badge: a.nota &gt;= 70 ? '✅ APROBADO' : '⚠️ EN PRÁCTICA'
 }));</textarea>
         </div>
         <div>
@@ -2091,15 +2108,18 @@ const productosVisibles = productos.filter(p =&gt; {
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Buscador Multicriterio Insensible a Mayúsculas
+            <span>Simulador en Vivo: Buscador Multicriterio Insensible a Mayúsculas</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(17)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
           
+          <button onclick="nextSlide()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+            Siguiente Slide (18/30) →
+          </button>
         </div>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -2183,15 +2203,18 @@ const todosEntregaron = lista.every(x =&gt; x.entregado === true);</code></pre>
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Validador de Formulario con .find(), .some() y .every()
+            <span>Simulador en Vivo: Validador de Formulario con .find(), .some() y .every()</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(18)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
           
+          <button onclick="nextSlide()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+            Siguiente Slide (19/30) →
+          </button>
         </div>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -2256,7 +2279,7 @@ const ordenarPorPrecio = () =&gt; {
 
       <div class="bg-white rounded-2xl border border-emerald-200 overflow-hidden shadow-sm flex flex-col">
         <div class="bg-emerald-50 px-4 py-2.5 border-b border-emerald-200 flex items-center justify-between">
-          <span class="text-xs font-extrabold text-emerald-800">✅ Clonación Previa + Pipeline Filter -> Sort -> Map</span>
+          <span class="text-xs font-extrabold text-emerald-800">✅ Clonación Previa + Pipeline Filter -&gt; Sort -&gt; Map</span>
           <span class="text-[11px] font-mono bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded">Estándar React + Vite</span>
         </div>
         <pre class="p-4 text-xs sm:text-sm font-mono bg-slate-900 text-emerald-200 overflow-x-auto flex-1 leading-relaxed"><code>const mejoresProductos = productos
@@ -2273,11 +2296,11 @@ const ordenarPorPrecio = () =&gt; {
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Pipeline Declarativo Sin Mutar el Original
+            <span>Simulador en Vivo: Pipeline Declarativo Sin Mutar el Original</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(19)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
@@ -2505,7 +2528,7 @@ return { primerCursoOriginalSigueSiendo: cursos[0].nombre, ranking };</textarea>
       <!-- Conceptos Clave -->
       <div class="mt-4 bg-slate-50 rounded-xl border border-slate-200 p-4">
         <h3 class="text-xs font-extrabold uppercase tracking-wider text-[#0F3647] mb-2">
-          📌 Anatomía de .reduce((acc, item) => nuevoAcc, valorInicial)
+          📌 Anatomía de .reduce((acc, item) =&gt; nuevoAcc, valorInicial)
         </h3>
         <ul class="space-y-1.5 text-xs sm:text-sm text-slate-700">
           <li class="flex items-start gap-2"><span class="text-[#39A900] font-extrabold mt-0.5">•</span><span><strong>1. Acumulador (<code>acc</code>):</strong> Guarda el resultado parcial que se pasa de una iteración a la siguiente.</span></li>
@@ -2523,7 +2546,7 @@ return { primerCursoOriginalSigueSiendo: cursos[0].nombre, ranking };</textarea>
           <span class="text-[11px] font-mono bg-rose-100 text-rose-700 px-2 py-0.5 rounded">Evitar en React</span>
         </div>
         <pre class="p-4 text-xs sm:text-sm font-mono bg-slate-900 text-rose-200 overflow-x-auto flex-1 leading-relaxed"><code>// ⚠️ En la primera vuelta acc es el primer objeto, no un número
-// Resultado: "[object Object]4500020000"
+// Resultado: &quot;[object Object]4500020000&quot;
 const total = carrito.reduce((acc, item) =&gt; acc + item.precio);</code></pre>
       </div>
 
@@ -2545,15 +2568,18 @@ const total = carrito.reduce((acc, item) =&gt; acc + item.precio);</code></pre>
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Liquidación de Carrito con .reduce()
+            <span>Simulador en Vivo: Liquidación de Carrito con .reduce()</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(21)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
           
+          <button onclick="nextSlide()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+            Siguiente Slide (22/30) →
+          </button>
         </div>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -2630,15 +2656,18 @@ const entregados = pedidos.filter(p =&gt; p.estado === 'ENTREGADO').length;</cod
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Agrupador de KPIs por Estado
+            <span>Simulador en Vivo: Agrupador de KPIs por Estado</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(22)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
           
+          <button onclick="nextSlide()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+            Siguiente Slide (23/30) →
+          </button>
         </div>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -2674,7 +2703,7 @@ return evidencias.reduce((acc, ev) =&gt; {
         <span class="text-xs font-bold text-slate-400">DIAPOSITIVA TEÓRICO-DEMOSTRATIVA 23 DE 30</span>
       </div>
       <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900">De .reduce() en JS al Hook useReducer(reducer, initialState) en React</h2>
-      <p class="text-sm sm:text-base text-slate-600 mt-1">Descubre por qué se llama "reducer": es exactamente la misma firma (state, action) => newState.</p>
+      <p class="text-sm sm:text-base text-slate-600 mt-1">Descubre por qué se llama &quot;reducer&quot;: es exactamente la misma firma (state, action) =&gt; newState.</p>
 
       <!-- Conceptos Clave -->
       <div class="mt-4 bg-slate-50 rounded-xl border border-slate-200 p-4">
@@ -2728,15 +2757,18 @@ return evidencias.reduce((acc, ev) =&gt; {
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Despachando Acciones a un Reducer con .reduce()
+            <span>Simulador en Vivo: Despachando Acciones a un Reducer con .reduce()</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(23)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
           
+          <button onclick="nextSlide()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+            Siguiente Slide (24/30) →
+          </button>
         </div>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -2826,11 +2858,11 @@ export default function Lista() { /* ... */ }</code></pre>
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Resolvedor de Configuración import.meta.env de Vite
+            <span>Simulador en Vivo: Resolvedor de Configuración import.meta.env de Vite</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(24)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
@@ -2870,7 +2902,7 @@ return {
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-emerald-300 text-xs font-extrabold mb-2">
-            <span>🧪 MÓDULO 5 · DOMINIO DE .REDUCE() & PATRÓN USEREDUCER · VALIDACIÓN AUTOMÁTICA EN PLATAFORMA</span>
+            <span>🧪 MÓDULO 5 · DOMINIO DE .REDUCE() &amp; PATRÓN USEREDUCER · VALIDACIÓN AUTOMÁTICA EN PLATAFORMA</span>
           </div>
           <h2 class="text-xl sm:text-2xl font-extrabold">Laboratorio Dinámico 5: Acumuladores .reduce(), Agrupaciones y Reducers Puros de React</h2>
           <p class="text-xs sm:text-sm text-slate-200 mt-1">Supera los 5 retos de transformación avanzada de colecciones con .reduce() y construye tu primer reducer puro listo para el hook useReducer.</p>
@@ -3088,10 +3120,10 @@ console.log('4. Fin');
           <span class="text-[11px] font-mono bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded">Estándar React + Vite</span>
         </div>
         <pre class="p-4 text-xs sm:text-sm font-mono bg-slate-900 text-emerald-200 overflow-x-auto flex-1 leading-relaxed"><code>// Salida real en consola:
-// "1. Inicio"        (Call Stack Síncrono)
-// "4. Fin"           (Call Stack Síncrono)
-// "3. Promesa"       (Microtask Queue - Prioridad Alta)
-// "2. Timeout 0ms"   (Macrotask Queue - Prioridad Baja)</code></pre>
+// &quot;1. Inicio&quot;        (Call Stack Síncrono)
+// &quot;4. Fin&quot;           (Call Stack Síncrono)
+// &quot;3. Promesa&quot;       (Microtask Queue - Prioridad Alta)
+// &quot;2. Timeout 0ms&quot;   (Macrotask Queue - Prioridad Baja)</code></pre>
       </div>
     </div>
 
@@ -3101,15 +3133,18 @@ console.log('4. Fin');
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Trazador del Event Loop
+            <span>Simulador en Vivo: Trazador del Event Loop</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(26)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
           
+          <button onclick="nextSlide()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+            Siguiente Slide (27/30) →
+          </button>
         </div>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -3198,15 +3233,18 @@ try {
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Máquina de Estados Asíncrona (Loading / Data / Error)
+            <span>Simulador en Vivo: Máquina de Estados Asíncrona (Loading / Data / Error)</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(27)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
           
+          <button onclick="nextSlide()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+            Siguiente Slide (28/30) →
+          </button>
         </div>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -3294,15 +3332,18 @@ const [perfil, cursos, alertas] = await Promise.all([
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Resiliencia con Promise.allSettled()
+            <span>Simulador en Vivo: Resiliencia con Promise.allSettled()</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(28)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
           
+          <button onclick="nextSlide()" class="px-3.5 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold transition">
+            Siguiente Slide (29/30) →
+          </button>
         </div>
       </div>
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -3356,7 +3397,7 @@ return resultados.map(r =&gt;
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-5">
       <div class="bg-white rounded-2xl border border-rose-200 overflow-hidden shadow-sm flex flex-col">
         <div class="bg-rose-50 px-4 py-2.5 border-b border-rose-200 flex items-center justify-between">
-          <span class="text-xs font-extrabold text-rose-800">❌ Anti-patrón: useEffect(async () => ...)</span>
+          <span class="text-xs font-extrabold text-rose-800">❌ Anti-patrón: useEffect(async () =&gt; ...)</span>
           <span class="text-[11px] font-mono bg-rose-100 text-rose-700 px-2 py-0.5 rounded">Evitar en React</span>
         </div>
         <pre class="p-4 text-xs sm:text-sm font-mono bg-slate-900 text-rose-200 overflow-x-auto flex-1 leading-relaxed"><code>// ⚠️ React lanza un Warning grave porque una función async
@@ -3397,11 +3438,11 @@ useEffect(async () =&gt; {
         <div>
           <h3 class="text-sm font-extrabold text-slate-900 flex items-center gap-2">
             <span class="w-2.5 h-2.5 rounded-full bg-[#39A900]"></span>
-            Simulador en Vivo: Ciclo de Vida y Cancelación con AbortController
+            <span>Simulador en Vivo: Ciclo de Vida y Cancelación con AbortController</span>
           </h3>
           <p class="text-xs text-slate-500">Puedes modificar los valores del código de prueba y ejecutarlo en vivo para comprobar el comportamiento.</p>
         </div>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
           <button onclick="runTheoryDemo(29)" class="px-4 py-2 rounded-xl bg-[#39A900] hover:bg-[#2D8200] text-white text-xs font-extrabold transition shadow-sm">
             ▶ Ejecutar Demostración en Vivo
           </button>
@@ -3614,6 +3655,7 @@ return {
   </section>
   </main>
 
+  
   <!-- Modal de Índice Rápido de las 30 Diapositivas -->
   <div id="index-modal" class="fixed inset-0 z-50 hidden bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden">
@@ -3634,7 +3676,7 @@ return {
               <div class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
                 Slide 1 · Inicio
               </div>
-              <div class="text-xs font-bold text-slate-900 truncate">Portada General & Ruta de 30 Slides hacia React + Vite</div>
+              <div class="text-xs font-bold text-slate-900 truncate">Portada General &amp; Ruta de 30 Slides hacia React + Vite</div>
             </div>
             <span class="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-slate-100 text-slate-600">
               1/30
@@ -3682,7 +3724,7 @@ return {
               <div class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
                 Slide 4 · Módulo 1
               </div>
-              <div class="text-xs font-bold text-slate-900 truncate">Operadores JSX: ?., ?? vs || y Ternario vs &&</div>
+              <div class="text-xs font-bold text-slate-900 truncate">Operadores JSX: ?., ?? vs || y Ternario vs &amp;&amp;</div>
             </div>
             <span class="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-slate-100 text-slate-600">
               4/30
@@ -3714,7 +3756,7 @@ return {
               <div class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
                 Slide 6 · Módulo 2
               </div>
-              <div class="text-xs font-bold text-slate-900 truncate">Arrow Functions y Retorno Implícito () => ({})</div>
+              <div class="text-xs font-bold text-slate-900 truncate">Arrow Functions y Retorno Implícito () =&gt; ({})</div>
             </div>
             <span class="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-slate-100 text-slate-600">
               6/30
@@ -3730,7 +3772,7 @@ return {
               <div class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400">
                 Slide 7 · Módulo 2
               </div>
-              <div class="text-xs font-bold text-slate-900 truncate">Closures y Updater Functions: prev => prev + 1</div>
+              <div class="text-xs font-bold text-slate-900 truncate">Closures y Updater Functions: prev =&gt; prev + 1</div>
             </div>
             <span class="px-2 py-0.5 rounded text-[11px] font-mono font-bold bg-slate-100 text-slate-600">
               7/30
@@ -4109,13 +4151,12 @@ return {
     </div>
   </div>
 
-  <!-- Pie de Página Institucional -->
   <footer class="bg-white border-t border-slate-200 py-3 px-4 text-center text-xs text-slate-500">
     SENA Regional Huila · Centro Agroempresarial y Desarrollo Pecuario del Huila (CADPH Garzón) · ADSO Ficha 3314621 · Instructor Héctor David Toledo García
   </footer>
 
-  <!-- Motor JavaScript del Laboratorio Dinámico (30 Ejercicios en Vivo) -->
   <script>
+    
     const LABS_DATA = {"lab1":{"id":"lab1","slideNum":5,"modulo":"Módulo 1 · Fundamentos & Operadores JSX","titulo":"Laboratorio Dinámico 1: const/let, Memoria y Operadores para JSX (?. / ?? / ? :)","descripcion":"Resuelve y valida en vivo los 5 ejercicios fundamentales sobre ámbito de bloque, referencias en memoria y operadores seguros para renderizado en React.","ejercicios":[{"id":"m1e1","num":1,"titulo":"1.1 Cálculo con Scope de Bloque (const / let)","contextoReact":"En React jamás usamos var. Calculamos valores derivados dentro de bloques usando const y let.","instrucciones":"Completa la función calcularEstadoCurso(cuposTotales, inscritos). Usa const para calcular \"disponibles\" (cuposTotales - inscritos) y let para definir \"estado\" (\"DISPONIBLE\" si disponibles > 0, o \"AGOTADO\" si es <= 0). Retorna { disponibles, estado }.","inputEjemplo":"calcularEstadoCurso(30, 25) // y calcularEstadoCurso(30, 30)","outputEjemplo":"{ disponibles: 5, estado: \"DISPONIBLE\" }","starterCode":"function calcularEstadoCurso(cuposTotales, inscritos) {\n  // 1. Declara con const la variable 'disponibles'\n  \n  // 2. Declara con let la variable 'estado' (\"DISPONIBLE\" o \"AGOTADO\")\n  \n  return { disponibles, estado };\n}","buggyCode":"function calcularEstadoCurso(cuposTotales, inscritos) {\n  // 🐞 Bug: El aprendiz invirtió la resta y usó el texto incorrecto\n  const disponibles = inscritos - cuposTotales;\n  let estado = disponibles > 0 ? \"ABIERTO\" : \"CERRADO\";\n  return { disponibles, estado };\n}","pista":"Resta cuposTotales - inscritos. Si disponibles > 0 asigna \"DISPONIBLE\", de lo contrario \"AGOTADO\".","fnName":"calcularEstadoCurso","tests":[{"args":[30,25],"expected":{"disponibles":5,"estado":"DISPONIBLE"},"desc":"Curso con 5 cupos disponibles"},{"args":[30,30],"expected":{"disponibles":0,"estado":"AGOTADO"},"desc":"Curso sin cupos (0 disponibles)"}]},{"id":"m1e2","num":2,"titulo":"1.2 Acceso Seguro Profundo con Optional Chaining (?.)","contextoReact":"Cuando un componente se monta en React, los datos de la API suelen ser null o incompletos antes de que termine el fetch.","instrucciones":"Completa obtenerCiudadAprendiz(aprendiz) usando Optional Chaining (?.) y Nullish Coalescing (??) para retornar aprendiz?.ubicacion?.municipio ?? \"Garzón\". No debe lanzar error si aprendiz es null o no tiene ubicacion.","inputEjemplo":"obtenerCiudadAprendiz({ nombre: \"Ana\", ubicacion: { municipio: \"Pitalito\" } })\nobtenerCiudadAprendiz(null)","outputEjemplo":"\"Pitalito\" // y \"Garzón\" cuando es null","starterCode":"function obtenerCiudadAprendiz(aprendiz) {\n  // Usa ?. y ?? para extraer ubicacion.municipio o retornar \"Garzón\" por defecto:\n  \n}","buggyCode":"function obtenerCiudadAprendiz(aprendiz) {\n  // 🐞 Bug: Acceso directo sin ?. rompe cuando aprendiz es null\n  return aprendiz.ubicacion.municipio || \"Garzón\";\n}","pista":"Escribe: return aprendiz?.ubicacion?.municipio ?? \"Garzón\";","fnName":"obtenerCiudadAprendiz","tests":[{"args":[{"nombre":"Ana","ubicacion":{"municipio":"Pitalito"}}],"expected":"Pitalito","desc":"Extrae municipio cuando existe"},{"args":[{}],"expected":"Garzón","desc":"Retorna \"Garzón\" cuando no existe ubicacion"},{"args":[null],"expected":"Garzón","desc":"No lanza TypeError cuando aprendiz es null"}]},{"id":"m1e3","num":3,"titulo":"1.3 El Bug del Cero: Nullish Coalescing (??) vs OR (||)","contextoReact":"Si un producto tiene precio 0 o descuento 0, el operador || lo reemplaza por error porque 0 es falsy en JS.","instrucciones":"Completa normalizarStockYPrecio(producto) para retornar { stockFinal, precioFinal }. Si producto.stock es null o undefined usa 10 por defecto (pero si es 0, debe conservar 0). Si producto.precio es null o undefined usa 50000 (pero si es 0, debe conservar 0).","inputEjemplo":"normalizarStockYPrecio({ stock: 0, precio: 0 })","outputEjemplo":"{ stockFinal: 0, precioFinal: 0 }","starterCode":"function normalizarStockYPrecio(producto) {\n  // Usa el operador ?? (NO uses ||) para respetar el valor 0:\n  const stockFinal = ;\n  const precioFinal = ;\n  return { stockFinal, precioFinal };\n}","buggyCode":"function normalizarStockYPrecio(producto) {\n  // 🐞 Bug: Usaron || y cuando llega stock: 0 lo cambia por 10\n  const stockFinal = producto.stock || 10;\n  const precioFinal = producto.precio || 50000;\n  return { stockFinal, precioFinal };\n}","pista":"Usa producto.stock ?? 10 y producto.precio ?? 50000.","fnName":"normalizarStockYPrecio","tests":[{"args":[{"stock":0,"precio":0}],"expected":{"stockFinal":0,"precioFinal":0},"desc":"Respeta 0 en stock y precio sin reemplazarlos"},{"args":[{}],"expected":{"stockFinal":10,"precioFinal":50000},"desc":"Aplica fallbacks 10 y 50000 cuando son undefined"},{"args":[{"stock":5,"precio":null}],"expected":{"stockFinal":5,"precioFinal":50000},"desc":"Maneja null correctamente"}]},{"id":"m1e4","num":4,"titulo":"1.4 Evitando la Trampa del 0 en JSX (Cortocircuito && vs Ternario)","contextoReact":"En JSX, escribir {stock && \"<Badge/>\"} imprime un \"0\" en pantalla cuando stock es 0. Siempre debemos evaluar una condición booleana explícita.","instrucciones":"Completa renderizarBadgeStock(stock). Si stock > 0, retorna exactamente el string \"<span class='ok'>En Stock: X</span>\" (reemplazando X por el número). Si stock es 0 o menor, retorna null (lo que hace que React no pinte nada).","inputEjemplo":"renderizarBadgeStock(8) // y renderizarBadgeStock(0)","outputEjemplo":"\"<span class='ok'>En Stock: 8</span>\" // y null cuando es 0","starterCode":"function renderizarBadgeStock(stock) {\n  // Si stock > 0 retorna \"<span class='ok'>En Stock: \" + stock + \"</span>\", sino null:\n  \n}","buggyCode":"function renderizarBadgeStock(stock) {\n  // 🐞 Bug clásico en React: retorna 0 en vez de null cuando stock === 0\n  return stock && `<span class='ok'>En Stock: ${stock}</span>`;\n}","pista":"Usa el operador ternario: return stock > 0 ? `<span class='ok'>En Stock: ${stock}</span>` : null;","fnName":"renderizarBadgeStock","tests":[{"args":[8],"expected":"<span class='ok'>En Stock: 8</span>","desc":"Retorna el span cuando stock > 0"},{"args":[0],"expected":null,"desc":"Retorna null (y NO el número 0) cuando stock es 0"}]},{"id":"m1e5","num":5,"titulo":"1.5 Detector de Mutación como lo hace React (Object.is)","contextoReact":"React decide si re-renderiza la pantalla comparando Object.is(estadoPrevio, nuevoEstado). Si apuntan a la misma dirección de memoria, aborta el render.","instrucciones":"Completa habraReRenderEnReact(estadoPrevio, nuevoEstado) para que retorne true si React SÍ re-renderizará el componente (es decir, cuando NO son la misma referencia según Object.is), o false si la referencia es la misma.","inputEjemplo":"const a = { x: 1 }; habraReRenderEnReact(a, a) // false\nhabraReRenderEnReact(a, { x: 1 }) // true","outputEjemplo":"false (misma referencia) / true (nueva referencia)","starterCode":"function habraReRenderEnReact(estadoPrevio, nuevoEstado) {\n  // Retorna true si son referencias diferentes (!Object.is), false si son la misma:\n  \n}","buggyCode":"function habraReRenderEnReact(estadoPrevio, nuevoEstado) {\n  // 🐞 Bug: Está retornando true cuando son iguales, al revés de React\n  return Object.is(estadoPrevio, nuevoEstado);\n}","pista":"React re-renderiza cuando !Object.is(estadoPrevio, nuevoEstado) (o estadoPrevio !== nuevoEstado).","fnName":"habraReRenderEnReact","tests":[{"customTest":"(fn) => { const ref = { id: 1 }; return fn(ref, ref) === false && fn(ref, { id: 1 }) === true; }","expected":true,"desc":"Detecta correctamente cuándo cambia la referencia en memoria"}]}]},"lab2":{"id":"lab2","slideNum":10,"modulo":"Módulo 2 · Arrow Functions & Desestructuración","titulo":"Laboratorio Dinámico 2: Arrow Functions, Updaters y Desestructuración (Props & Hooks)","descripcion":"Valida tus conocimientos sobre retorno implícito de objetos, funciones actualizadoras de estado y desestructuración de props y tuplas.","ejercicios":[{"id":"m2e1","num":1,"titulo":"2.1 Arrow Function con Retorno Implícito de Objeto","contextoReact":"En Redux, Zustand y .map() en React usamos arrow functions que retornan un objeto literal directamente envolviéndolo en paréntesis ({ ... }).","instrucciones":"Declara la arrow function crearfichaAprendiz = (id, nombre, nota = 4.0) => ({ ... }) que retorne implícitamente un objeto con { id, nombre, ficha: 3314621, nota, aprobado: nota >= 3.5 }.","inputEjemplo":"crearfichaAprendiz(10, \"Valentina\", 4.6)","outputEjemplo":"{ id: 10, nombre: \"Valentina\", ficha: 3314621, nota: 4.6, aprobado: true }","starterCode":"const crearfichaAprendiz = (id, nombre, nota = 4.0) => ({\n  // Completa las propiedades del objeto retornado implícitamente:\n  \n});","buggyCode":"// 🐞 Bug: Olvidaron los paréntesis alrededor de las llaves {}\nconst crearfichaAprendiz = (id, nombre, nota = 4.0) => {\n  id, nombre, ficha: 3314621, nota, aprobado: nota >= 3.5\n};","pista":"Dentro de ({ ... }) incluye: id, nombre, ficha: 3314621, nota, aprobado: nota >= 3.5","fnName":"crearfichaAprendiz","tests":[{"args":[10,"Valentina",4.6],"expected":{"id":10,"nombre":"Valentina","ficha":3314621,"nota":4.6,"aprobado":true},"desc":"Retorna objeto con aprobado: true cuando nota >= 3.5"},{"args":[11,"Pedro",3],"expected":{"id":11,"nombre":"Pedro","ficha":3314621,"nota":3,"aprobado":false},"desc":"Retorna aprobado: false cuando nota < 3.5"},{"args":[12,"Camila"],"expected":{"id":12,"nombre":"Camila","ficha":3314621,"nota":4,"aprobado":true},"desc":"Aplica valor por defecto nota = 4.0"}]},{"id":"m2e2","num":2,"titulo":"2.2 Función Updater para useState (Evitar Stale Closures)","contextoReact":"En React, pasar una arrow function a setContador(prev => prev + 1) garantiza trabajar siempre con el último estado real.","instrucciones":"Completa crearUpdaterContador(delta) para que retorne UNA FUNCIÓN FLECHA que reciba \"estadoPrevio\" y devuelva \"estadoPrevio + delta\".","inputEjemplo":"const sumarCinco = crearUpdaterContador(5);\nsumarCinco(10) // 15","outputEjemplo":"15","starterCode":"function crearUpdaterContador(delta) {\n  // Retorna una arrow function (estadoPrevio) => ...\n  \n}","buggyCode":"function crearUpdaterContador(delta) {\n  // 🐞 Bug: Retorna un número en vez de retornar una función updater\n  return delta + 1;\n}","pista":"Escribe: return (estadoPrevio) => estadoPrevio + delta;","fnName":"crearUpdaterContador","tests":[{"customTest":"(fn) => { const up = fn(5); return typeof up === 'function' && up(10) === 15 && fn(-2)(10) === 8; }","expected":true,"desc":"Retorna una función clausura (updater) que suma delta al estado previo"}]},{"id":"m2e3","num":3,"titulo":"2.3 Desestructuración de Props con Renombrado y Fallback","contextoReact":"Los componentes en React reciben un objeto props y lo desestructuran en la firma de la función.","instrucciones":"Completa extraerPropsTarjeta({ titulo, precio = 0, categoria: rubro = \"General\", disponible = true } = {}) para retornar el string exacto: \"[RUBRO] TITULO: $PRECIO (DISPONIBLE/AGOTADO)\".","inputEjemplo":"extraerPropsTarjeta({ titulo: \"Café Huila\", precio: 25000, categoria: \"Agro\" })","outputEjemplo":"\"[Agro] Café Huila: $25000 (DISPONIBLE)\"","starterCode":"function extraerPropsTarjeta({\n  // Desestructura titulo, precio = 0, categoria renombrado a rubro = \"General\", disponible = true\n} = {}) {\n  const textoEstado = disponible ? \"DISPONIBLE\" : \"AGOTADO\";\n  return `[${rubro}] ${titulo}: $${precio} (${textoEstado})`;\n}","buggyCode":"function extraerPropsTarjeta({ titulo, precio, categoria, disponible } = {}) {\n  // 🐞 Bug: No renombraron categoria a rubro ni pusieron valores por defecto\n  const textoEstado = disponible ? \"DISPONIBLE\" : \"AGOTADO\";\n  return `[${rubro}] ${titulo}: $${precio} (${textoEstado})`;\n}","pista":"En los parámetros escribe: { titulo, precio = 0, categoria: rubro = \"General\", disponible = true } = {}","fnName":"extraerPropsTarjeta","tests":[{"args":[{"titulo":"Café Huila","precio":25000,"categoria":"Agro"}],"expected":"[Agro] Café Huila: $25000 (DISPONIBLE)","desc":"Formatea tarjeta renombrando categoria a rubro"},{"args":[{"titulo":"Muestra Gratis","disponible":false}],"expected":"[General] Muestra Gratis: $0 (AGOTADO)","desc":"Aplica fallbacks precio = 0 y rubro = \"General\""}]},{"id":"m2e4","num":4,"titulo":"2.4 Desestructuración Anidada y Rest de Objeto (...habilidades)","contextoReact":"En componentes envolventes (wrappers) de React, extraemos las props propias y agrupamos el resto con ...restProps.","instrucciones":"Completa normalizarPerfilAprendiz({ nombre, correo: email, ficha = 3314621, ...habilidades } = {}) para retornar { nombre, email, ficha, habilidades }.","inputEjemplo":"normalizarPerfilAprendiz({ nombre: \"Luisa\", correo: \"luisa@sena.edu.co\", react: \"Alto\", vite: \"Medio\" })","outputEjemplo":"{ nombre: \"Luisa\", email: \"luisa@sena.edu.co\", ficha: 3314621, habilidades: { react: \"Alto\", vite: \"Medio\" } }","starterCode":"function normalizarPerfilAprendiz({\n  // Desestructura nombre, correo como email, ficha = 3314621 y ...habilidades\n} = {}) {\n  return { nombre, email, ficha, habilidades };\n}","buggyCode":"function normalizarPerfilAprendiz({ correo: email, ficha = 3314621, ...habilidades } = {}) {\n  // 🐞 Bug: Olvidaron desestructurar 'nombre' en los parámetros\n  return { nombre, email, ficha, habilidades };\n}","pista":"Parámetros: { nombre, correo: email, ficha = 3314621, ...habilidades } = {}","fnName":"normalizarPerfilAprendiz","tests":[{"args":[{"nombre":"Luisa","correo":"luisa@sena.edu.co","react":"Alto","vite":"Medio"}],"expected":{"nombre":"Luisa","email":"luisa@sena.edu.co","ficha":3314621,"habilidades":{"react":"Alto","vite":"Medio"}},"desc":"Separa propiedades fijas y agrupa el resto en habilidades"}]},{"id":"m2e5","num":5,"titulo":"2.5 Desestructuración de Arreglos estilo useState","contextoReact":"useState y useReducer retornan un arreglo (tupla) que desestructuramos por posición: const [state, setState] = useState().","instrucciones":"Completa desempaquetarHook(tupla = []) usando desestructuración de arreglos [valorActual, actualizarValor, ...historial] para retornar { valorActual, actualizarValor, totalHistorial: historial.length }.","inputEjemplo":"desempaquetarHook([100, \"fnSetter\", 50, 80, 90])","outputEjemplo":"{ valorActual: 100, actualizarValor: \"fnSetter\", totalHistorial: 3 }","starterCode":"function desempaquetarHook(tupla = []) {\n  // Desestructura [valorActual, actualizarValor, ...historial] desde tupla:\n  \n  return { valorActual, actualizarValor, totalHistorial: historial.length };\n}","buggyCode":"function desempaquetarHook(tupla = []) {\n  // 🐞 Bug: Usaron llaves {} en lugar de corchetes [] para desestructurar un arreglo\n  const { valorActual, actualizarValor, ...historial } = tupla;\n  return { valorActual, actualizarValor, totalHistorial: historial.length };\n}","pista":"Usa corchetes: const [valorActual, actualizarValor, ...historial] = tupla;","fnName":"desempaquetarHook","tests":[{"args":[[100,"fnSetter",50,80,90]],"expected":{"valorActual":100,"actualizarValor":"fnSetter","totalHistorial":3},"desc":"Extrae posiciones 0, 1 y cuenta el resto con ...historial"}]}]},"lab3":{"id":"lab3","slideNum":15,"modulo":"Módulo 3 · Inmutabilidad & Spread Operator (...)","titulo":"Laboratorio Dinámico 3: Clonado Inmutable, Deep Spread y CRUD de Estado (useState)","descripcion":"Domina las 5 operaciones de actualización de estado sin mutar jamás los objetos ni arreglos originales en memoria.","ejercicios":[{"id":"m3e1","num":1,"titulo":"3.1 Actualizar Propiedad de Objeto sin Mutar el Original","contextoReact":"En React: setUsuario({ ...usuario, rol: nuevoRol }). El objeto original debe permanecer intacto.","instrucciones":"Completa actualizarRolAprendiz(aprendizOriginal, nuevoRol) retornando un NUEVO objeto con todas las propiedades de aprendizOriginal, pero con \"rol: nuevoRol\" y \"actualizado: true\". ¡No mutes aprendizOriginal!","inputEjemplo":"actualizarRolAprendiz({ id: 1, nombre: \"Juan\", rol: \"Aprendiz\" }, \"Vocero\")","outputEjemplo":"{ id: 1, nombre: \"Juan\", rol: \"Vocero\", actualizado: true }","starterCode":"function actualizarRolAprendiz(aprendizOriginal, nuevoRol) {\n  // Retorna un nuevo objeto usando spread (...aprendizOriginal):\n  \n}","buggyCode":"function actualizarRolAprendiz(aprendizOriginal, nuevoRol) {\n  // 🐞 Bug: Muta directamente el objeto recibido por parámetro\n  aprendizOriginal.rol = nuevoRol;\n  aprendizOriginal.actualizado = true;\n  return aprendizOriginal;\n}","pista":"return { ...aprendizOriginal, rol: nuevoRol, actualizado: true };","fnName":"actualizarRolAprendiz","tests":[{"customTest":"(fn) => {\n              const orig = { id: 1, nombre: \"Juan\", rol: \"Aprendiz\" };\n              const res = fn(orig, \"Vocero\");\n              return res !== orig && orig.rol === \"Aprendiz\" && res.rol === \"Vocero\" && res.actualizado === true;\n            }","expected":true,"desc":"Crea nueva referencia y preserva intacto el objeto original"}]},{"id":"m3e2","num":2,"titulo":"3.2 Deep Spread: Actualizar Objeto Anidado Inmutablemente","contextoReact":"El operador spread es superficial (shallow). Si actualizas un sub-objeto como preferencias.tema, debes clonar ambos niveles.","instrucciones":"Completa cambiarTemaPreferencias(estado, nuevoTema) para retornar un nuevo estado donde estado.preferencias.tema sea nuevoTema, conservando las demás propiedades de estado y de estado.preferencias sin mutar el original.","inputEjemplo":"cambiarTemaPreferencias({ usuario: \"Ana\", preferencias: { tema: \"claro\", idioma: \"es\" } }, \"oscuro\")","outputEjemplo":"{ usuario: \"Ana\", preferencias: { tema: \"oscuro\", idioma: \"es\" } }","starterCode":"function cambiarTemaPreferencias(estado, nuevoTema) {\n  // Clona el nivel raíz (...estado) Y también el nivel anidado (...estado.preferencias):\n  \n}","buggyCode":"function cambiarTemaPreferencias(estado, nuevoTema) {\n  // 🐞 Bug de Shallow Copy: muta estado.preferencias en el Heap\n  const copia = { ...estado };\n  copia.preferencias.tema = nuevoTema;\n  return copia;\n}","pista":"return { ...estado, preferencias: { ...estado.preferencias, tema: nuevoTema } };","fnName":"cambiarTemaPreferencias","tests":[{"customTest":"(fn) => {\n              const orig = { usuario: \"Ana\", preferencias: { tema: \"claro\", idioma: \"es\" } };\n              const res = fn(orig, \"oscuro\");\n              return res !== orig && res.preferencias !== orig.preferencias && orig.preferencias.tema === \"claro\" && res.preferencias.tema === \"oscuro\" && res.preferencias.idioma === \"es\";\n            }","expected":true,"desc":"Clona ambos niveles sin mutar estado.preferencias original"}]},{"id":"m3e3","num":3,"titulo":"3.3 Agregar Elemento a una Lista sin usar .push()","contextoReact":"lista.push() muta el mismo arreglo y React no re-renderiza. Usa siempre [...lista, nuevoItem].","instrucciones":"Completa agregarEvidencia(listaActual, nuevaEvidencia) para retornar un nuevo arreglo con nuevaEvidencia al final, sin modificar listaActual.","inputEjemplo":"agregarEvidencia([\"Evidencia 1\"], \"Evidencia 2\")","outputEjemplo":"[\"Evidencia 1\", \"Evidencia 2\"]","starterCode":"function agregarEvidencia(listaActual, nuevaEvidencia) {\n  // Retorna un nuevo arreglo usando [...listaActual, nuevaEvidencia]:\n  \n}","buggyCode":"function agregarEvidencia(listaActual, nuevaEvidencia) {\n  // 🐞 Bug mortal en React: .push() muta el arreglo y devuelve la longitud (número)\n  return listaActual.push(nuevaEvidencia);\n}","pista":"Escribe: return [...listaActual, nuevaEvidencia];","fnName":"agregarEvidencia","tests":[{"customTest":"(fn) => {\n              const orig = [\"Evidencia 1\"];\n              const res = fn(orig, \"Evidencia 2\");\n              return Array.isArray(res) && res !== orig && orig.length === 1 && res.length === 2 && res[1] === \"Evidencia 2\";\n            }","expected":true,"desc":"Retorna nuevo arreglo con el elemento agregado y mantiene el original intacto"}]},{"id":"m3e4","num":4,"titulo":"3.4 Actualizar un Elemento por ID dentro de un Arreglo (.map + Spread)","contextoReact":"En listas de tareas o carritos de compras, usamos .map() para clonar solo el objeto cuyo ID coincida.","instrucciones":"Completa alternarTareaCompletada(tareas, idBuscado) para retornar un nuevo arreglo donde la tarea con id === idBuscado invierta su booleano \"completada\" (!t.completada), dejando las demás tareas intactas.","inputEjemplo":"alternarTareaCompletada([{ id: 1, texto: \"Instalar Vite\", completada: false }], 1)","outputEjemplo":"[{ id: 1, texto: \"Instalar Vite\", completada: true }]","starterCode":"function alternarTareaCompletada(tareas, idBuscado) {\n  // Usa tareas.map(t => ...) y spread { ...t, completada: !t.completada }\n  \n}","buggyCode":"function alternarTareaCompletada(tareas, idBuscado) {\n  // 🐞 Bug: Muta el objeto tarea directamente dentro del map\n  return tareas.map(t => {\n    if (t.id === idBuscado) t.completada = !t.completada;\n    return t;\n  });\n}","pista":"return tareas.map(t => t.id === idBuscado ? { ...t, completada: !t.completada } : t);","fnName":"alternarTareaCompletada","tests":[{"customTest":"(fn) => {\n              const orig = [{ id: 1, texto: \"Vite\", completada: false }, { id: 2, texto: \"React\", completada: false }];\n              const res = fn(orig, 1);\n              return res !== orig && orig[0].completada === false && res[0].completada === true && res[1] === orig[1];\n            }","expected":true,"desc":"Invierte completada de forma inmutable y conserva referencias de items no modificados"}]},{"id":"m3e5","num":5,"titulo":"3.5 Eliminar un Elemento por ID sin usar .splice()","contextoReact":"Para eliminar un registro del estado en React jamás usamos .splice(); filtramos con .filter(item => item.id !== id).","instrucciones":"Completa eliminarProductoCarrito(carrito, idEliminar) retornando un nuevo arreglo que excluya el producto con id === idEliminar.","inputEjemplo":"eliminarProductoCarrito([{ id: 10 }, { id: 20 }, { id: 30 }], 20)","outputEjemplo":"[{ id: 10 }, { id: 30 }]","starterCode":"function eliminarProductoCarrito(carrito, idEliminar) {\n  // Usa .filter() para conservar solo los items cuyo id sea diferente de idEliminar:\n  \n}","buggyCode":"function eliminarProductoCarrito(carrito, idEliminar) {\n  // 🐞 Bug: Usaron === en lugar de !== y dejaron solo el que querían borrar\n  return carrito.filter(item => item.id === idEliminar);\n}","pista":"return carrito.filter(item => item.id !== idEliminar);","fnName":"eliminarProductoCarrito","tests":[{"customTest":"(fn) => {\n              const orig = [{ id: 10 }, { id: 20 }, { id: 30 }];\n              const res = fn(orig, 20);\n              return res !== orig && orig.length === 3 && res.length === 2 && res[0].id === 10 && res[1].id === 30;\n            }","expected":true,"desc":"Elimina el elemento con id 20 sin mutar el arreglo original"}]}]},"lab4":{"id":"lab4","slideNum":20,"modulo":"Módulo 4 · Métodos de Arreglos I (.map, .filter, .find, .some, .every, .sort)","titulo":"Laboratorio Dinámico 4: Transformación de Listas UI, Filtros Multicriterio y Ordenamiento Inmutable","descripcion":"Pon a prueba los métodos declarativos de arreglos que usarás en el 95% de los componentes que pintan tablas, catálogos y buscadores en React.","ejercicios":[{"id":"m4e1","num":1,"titulo":"4.1 Proyección a Tarjetas UI con .map() y Prop key","contextoReact":"En JSX transformamos arreglos de objetos en elementos visuales con .map(), asignando siempre un identificador único key.","instrucciones":"Completa proyectarTarjetasAprendices(aprendices) usando .map() para retornar por cada aprendiz: { key: `apr-${a.id}`, titulo: a.nombre.toUpperCase(), estado: a.promedio >= 3.5 ? \"APROBADO\" : \"EN REFUERZO\" }.","inputEjemplo":"proyectarTarjetasAprendices([{ id: 1, nombre: \"Ana\", promedio: 4.2 }])","outputEjemplo":"[{ key: \"apr-1\", titulo: \"ANA\", estado: \"APROBADO\" }]","starterCode":"function proyectarTarjetasAprendices(aprendices) {\n  // Transforma cada aprendiz usando .map():\n  \n}","buggyCode":"function proyectarTarjetasAprendices(aprendices) {\n  // 🐞 Bug: Usaron .forEach() que retorna undefined en lugar de .map()\n  return aprendices.forEach(a => ({\n    key: `apr-${a.id}`,\n    titulo: a.nombre.toUpperCase(),\n    estado: a.promedio >= 3.5 ? \"APROBADO\" : \"EN REFUERZO\"\n  }));\n}","pista":"return aprendices.map(a => ({ key: `apr-${a.id}`, titulo: a.nombre.toUpperCase(), estado: a.promedio >= 3.5 ? \"APROBADO\" : \"EN REFUERZO\" }));","fnName":"proyectarTarjetasAprendices","tests":[{"args":[[{"id":1,"nombre":"Ana","promedio":4.2},{"id":2,"nombre":"Luis","promedio":3.1}]],"expected":[{"key":"apr-1","titulo":"ANA","estado":"APROBADO"},{"key":"apr-2","titulo":"LUIS","estado":"EN REFUERZO"}],"desc":"Proyecta correctamente key, titulo en mayúsculas y estado académico"}]},{"id":"m4e2","num":2,"titulo":"4.2 Buscador Multicriterio en Tiempo Real con .filter()","contextoReact":"Los buscadores y filtros de catálogos en React encadenan condiciones booleanas dentro de .filter().","instrucciones":"Completa filtrarProductosDisponibles(catalogo, categoriaBuscada, textoBusqueda = \"\"). Filtra los productos que tengan: 1) stock > 0, 2) categoria === categoriaBuscada, y 3) cuyo nombre (en minúsculas) incluya textoBusqueda (en minúsculas).","inputEjemplo":"filtrarProductosDisponibles([{ nombre: \"Café Huila\", categoria: \"Agro\", stock: 5 }], \"Agro\", \"huila\")","outputEjemplo":"[{ nombre: \"Café Huila\", categoria: \"Agro\", stock: 5 }]","starterCode":"function filtrarProductosDisponibles(catalogo, categoriaBuscada, textoBusqueda = \"\") {\n  // Usa catalogo.filter(p => ...) verificando stock > 0, categoria y nombre:\n  \n}","buggyCode":"function filtrarProductosDisponibles(catalogo, categoriaBuscada, textoBusqueda = \"\") {\n  // 🐞 Bug: No convirtieron a minúsculas (.toLowerCase()) para comparar el texto\n  return catalogo.filter(p => p.stock > 0 && p.categoria === categoriaBuscada && p.nombre.includes(textoBusqueda));\n}","pista":"return catalogo.filter(p => p.stock > 0 && p.categoria === categoriaBuscada && p.nombre.toLowerCase().includes(textoBusqueda.toLowerCase()));","fnName":"filtrarProductosDisponibles","tests":[{"args":[[{"id":1,"nombre":"Café Orgánico Garzón","categoria":"Agro","stock":10},{"id":2,"nombre":"Café Reserva","categoria":"Agro","stock":0},{"id":3,"nombre":"Guadañadora","categoria":"Herramientas","stock":4}],"Agro","GARZÓN"],"expected":[{"id":1,"nombre":"Café Orgánico Garzón","categoria":"Agro","stock":10}],"desc":"Filtra por stock > 0, categoría exacta y búsqueda case-insensitive"}]},{"id":"m4e3","num":3,"titulo":"4.3 Búsqueda Exacta (.find) y Alerta de Inventario (.some)","contextoReact":"Usamos .find() para abrir el modal de detalle de un item y .some() para mostrar una alerta si algún producto se agotó.","instrucciones":"Completa diagnosticarInventario(productos, idDetalle) para retornar { detalle: producto encontrado con .find(p => p.id === idDetalle) || null, hayAgotados: booleano con .some(p => p.stock === 0) }.","inputEjemplo":"diagnosticarInventario([{ id: 10, stock: 5 }, { id: 20, stock: 0 }], 10)","outputEjemplo":"{ detalle: { id: 10, stock: 5 }, hayAgotados: true }","starterCode":"function diagnosticarInventario(productos, idDetalle) {\n  // 1. Busca el producto con .find() (si no existe, null)\n  // 2. Verifica si alguno tiene stock === 0 con .some()\n  \n  return { detalle, hayAgotados };\n}","buggyCode":"function diagnosticarInventario(productos, idDetalle) {\n  // 🐞 Bug: Usaron .filter() en vez de .find(), devolviendo un array en lugar del objeto\n  const detalle = productos.filter(p => p.id === idDetalle);\n  const hayAgotados = productos.every(p => p.stock === 0);\n  return { detalle, hayAgotados };\n}","pista":"const detalle = productos.find(p => p.id === idDetalle) ?? null; const hayAgotados = productos.some(p => p.stock === 0);","fnName":"diagnosticarInventario","tests":[{"args":[[{"id":10,"stock":5},{"id":20,"stock":0}],10],"expected":{"detalle":{"id":10,"stock":5},"hayAgotados":true},"desc":"Encuentra el objeto único con .find() y detecta agotados con .some()"},{"args":[[{"id":10,"stock":5}],99],"expected":{"detalle":null,"hayAgotados":false},"desc":"Retorna null si el ID no existe y false si ninguno está agotado"}]},{"id":"m4e4","num":4,"titulo":"4.4 Validación Total (.every) y Categorías Únicas (Set)","contextoReact":"Con .every() habilitamos el botón \"Enviar\" cuando todos los campos son válidos, y con new Set() creamos los filtros de categorías únicas.","instrucciones":"Completa analizarGrupo(aprendices) para retornar { todosAprobados: booleano con .every(a => a.nota >= 3.5), sedesUnicas: arreglo sin duplicados de a.sede usando [...new Set(...)] }.","inputEjemplo":"analizarGrupo([{ nota: 4.0, sede: \"Garzón\" }, { nota: 3.8, sede: \"Garzón\" }, { nota: 4.5, sede: \"Pitalito\" }])","outputEjemplo":"{ todosAprobados: true, sedesUnicas: [\"Garzón\", \"Pitalito\"] }","starterCode":"function analizarGrupo(aprendices) {\n  // 1. Usa .every() para saber si todos tienen nota >= 3.5\n  // 2. Usa [...new Set(aprendices.map(a => a.sede))] para obtener sedesUnicas\n  \n  return { todosAprobados, sedesUnicas };\n}","buggyCode":"function analizarGrupo(aprendices) {\n  // 🐞 Bug: Usaron .some() en vez de .every() y no eliminaron duplicados con Set\n  const todosAprobados = aprendices.some(a => a.nota >= 3.5);\n  const sedesUnicas = aprendices.map(a => a.sede);\n  return { todosAprobados, sedesUnicas };\n}","pista":"const todosAprobados = aprendices.every(a => a.nota >= 3.5); const sedesUnicas = [...new Set(aprendices.map(a => a.sede))];","fnName":"analizarGrupo","tests":[{"args":[[{"nota":4,"sede":"Garzón"},{"nota":3.8,"sede":"Garzón"},{"nota":4.5,"sede":"Pitalito"}]],"expected":{"todosAprobados":true,"sedesUnicas":["Garzón","Pitalito"]},"desc":"Valida .every() y extrae valores únicos con Set"},{"args":[[{"nota":4,"sede":"Garzón"},{"nota":2.9,"sede":"La Plata"}]],"expected":{"todosAprobados":false,"sedesUnicas":["Garzón","La Plata"]},"desc":"Retorna todosAprobados: false cuando al menos uno tiene nota < 3.5"}]},{"id":"m4e5","num":5,"titulo":"4.5 Ordenamiento Inmutable ([...lista].sort)","contextoReact":"¡Cuidado! El método .sort() muta el arreglo original in-place. En React siempre clonamos antes de ordenar: [...lista].sort().","instrucciones":"Completa ordenarPorPrecioMenorAMayor(productos) para retornar un NUEVO arreglo ordenado por p.precio de menor a mayor (a.precio - b.precio) SIN modificar el orden del arreglo original.","inputEjemplo":"ordenarPorPrecioMenorAMayor([{ nombre: \"B\", precio: 90 }, { nombre: \"A\", precio: 30 }])","outputEjemplo":"[{ nombre: \"A\", precio: 30 }, { nombre: \"B\", precio: 90 }]","starterCode":"function ordenarPorPrecioMenorAMayor(productos) {\n  // Clona el arreglo con [...productos] antes de aplicar .sort((a, b) => a.precio - b.precio):\n  \n}","buggyCode":"function ordenarPorPrecioMenorAMayor(productos) {\n  // 🐞 Bug: Llama a productos.sort() directamente, mutando el estado original\n  return productos.sort((a, b) => a.precio - b.precio);\n}","pista":"return [...productos].sort((a, b) => a.precio - b.precio);","fnName":"ordenarPorPrecioMenorAMayor","tests":[{"customTest":"(fn) => {\n              const orig = [{ id: 1, precio: 90000 }, { id: 2, precio: 30000 }, { id: 3, precio: 60000 }];\n              const res = fn(orig);\n              return res !== orig && orig[0].id === 1 && res[0].id === 2 && res[1].id === 3 && res[2].id === 1;\n            }","expected":true,"desc":"Ordena de menor a mayor en un nuevo arreglo dejando intacto el arreglo original"}]}]},"lab5":{"id":"lab5","slideNum":25,"modulo":"Módulo 5 · Dominio de .reduce() & Patrón useReducer","titulo":"Laboratorio Dinámico 5: Acumuladores .reduce(), Agrupaciones y Reducers Puros de React","descripcion":"Supera los 5 retos de transformación avanzada de colecciones con .reduce() y construye tu primer reducer puro listo para el hook useReducer.","ejercicios":[{"id":"m5e1","num":1,"titulo":"5.1 Valoración Total de Inventario con .reduce()","contextoReact":"En encabezados de dashboards y carritos de compras usamos .reduce() para calcular totales derivados del estado.","instrucciones":"Completa calcularValorInventario(productos) usando .reduce() con valor inicial 0 para sumar (p.precio * p.stock) de todos los productos.","inputEjemplo":"calcularValorInventario([{ precio: 10000, stock: 3 }, { precio: 25000, stock: 2 }])","outputEjemplo":"80000","starterCode":"function calcularValorInventario(productos) {\n  // Usa productos.reduce((acc, p) => ..., 0):\n  \n}","buggyCode":"function calcularValorInventario(productos) {\n  // 🐞 Bug: Olvidaron pasar el valor inicial 0 a .reduce(), sumando sobre un objeto\n  return productos.reduce((acc, p) => acc + (p.precio * p.stock));\n}","pista":"return productos.reduce((acc, p) => acc + (p.precio * p.stock), 0);","fnName":"calcularValorInventario","tests":[{"args":[[{"precio":10000,"stock":3},{"precio":25000,"stock":2}]],"expected":80000,"desc":"Suma correctamente precio * stock de cada item"},{"args":[[]],"expected":0,"desc":"Retorna 0 cuando el arreglo está vacío"}]},{"id":"m5e2","num":2,"titulo":"5.2 Liquidación de Factura con Descuentos e IVA 19% (.reduce)","contextoReact":"Un solo .reduce() permite acumular múltiples métricas financieras en un objeto resumen sin recorrer el arreglo 4 veces.","instrucciones":"Completa liquidarPedido(items) usando .reduce() para calcular: subtotalBruto (suma de precio*cantidad), totalDescuentos (suma de precio*cantidad*(descuento ?? 0)), baseGravable (subtotalBruto - totalDescuentos), iva19 (Math.round(baseGravable * 0.19)) y totalPagar (baseGravable + iva19).","inputEjemplo":"liquidarPedido([{ precio: 100000, cantidad: 2, descuento: 0.10 }])","outputEjemplo":"{ subtotalBruto: 200000, totalDescuentos: 20000, baseGravable: 180000, iva19: 34200, totalPagar: 214200 }","starterCode":"function liquidarPedido(items) {\n  const acum = items.reduce((acc, item) => {\n    const bruto = item.precio * item.cantidad;\n    const desc = bruto * (item.descuento ?? 0);\n    return {\n      subtotalBruto: acc.subtotalBruto + bruto,\n      totalDescuentos: acc.totalDescuentos + desc\n    };\n  }, { subtotalBruto: 0, totalDescuentos: 0 });\n\n  // Calcula baseGravable, iva19 y totalPagar y retorna el objeto completo:\n  \n}","buggyCode":"function liquidarPedido(items) {\n  const acum = items.reduce((acc, item) => {\n    const bruto = item.precio * item.cantidad;\n    const desc = bruto * (item.descuento ?? 0);\n    return { subtotalBruto: acc.subtotalBruto + bruto, totalDescuentos: acc.totalDescuentos + desc };\n  }, { subtotalBruto: 0, totalDescuentos: 0 });\n  // 🐞 Bug: Calculó el IVA sobre el subtotalBruto en lugar de la baseGravable\n  const baseGravable = acum.subtotalBruto - acum.totalDescuentos;\n  const iva19 = Math.round(acum.subtotalBruto * 0.19);\n  return { ...acum, baseGravable, iva19, totalPagar: baseGravable + iva19 };\n}","pista":"const baseGravable = acum.subtotalBruto - acum.totalDescuentos; const iva19 = Math.round(baseGravable * 0.19); return { ...acum, baseGravable, iva19, totalPagar: baseGravable + iva19 };","fnName":"liquidarPedido","tests":[{"args":[[{"precio":100000,"cantidad":2,"descuento":0.1},{"precio":50000,"cantidad":1,"descuento":0}]],"expected":{"subtotalBruto":250000,"totalDescuentos":20000,"baseGravable":230000,"iva19":43700,"totalPagar":273700},"desc":"Liquida subtotal, descuentos, base gravable, IVA 19% y total a pagar"}]},{"id":"m5e3","num":3,"titulo":"5.3 Arqueo de Caja Inmutable con .reduce()","contextoReact":"Agrupar colecciones por tipo o estado mediante .reduce() evita tener múltiples estados desincronizados en React.","instrucciones":"Completa arquearCaja(movimientos) usando .reduce() para clasificar cada movimiento ({ tipo: \"INGRESO\"|\"EGRESO\", monto }) y retornar { totalIngresos, totalEgresos, saldoNeto: totalIngresos - totalEgresos }.","inputEjemplo":"arquearCaja([{ tipo: \"INGRESO\", monto: 500 }, { tipo: \"EGRESO\", monto: 150 }])","outputEjemplo":"{ totalIngresos: 500, totalEgresos: 150, saldoNeto: 350 }","starterCode":"function arquearCaja(movimientos) {\n  // Usa .reduce() con valor inicial { totalIngresos: 0, totalEgresos: 0, saldoNeto: 0 }:\n  \n}","buggyCode":"function arquearCaja(movimientos) {\n  // 🐞 Bug: Sumaron los egresos al saldoNeto en lugar de restarlos\n  return movimientos.reduce((acc, m) => {\n    const ing = m.tipo === \"INGRESO\" ? acc.totalIngresos + m.monto : acc.totalIngresos;\n    const egr = m.tipo === \"EGRESO\" ? acc.totalEgresos + m.monto : acc.totalEgresos;\n    return { totalIngresos: ing, totalEgresos: egr, saldoNeto: ing + egr };\n  }, { totalIngresos: 0, totalEgresos: 0, saldoNeto: 0 });\n}","pista":"saldoNeto debe ser ing - egr.","fnName":"arquearCaja","tests":[{"args":[[{"tipo":"INGRESO","monto":500000},{"tipo":"EGRESO","monto":120000},{"tipo":"INGRESO","monto":200000}]],"expected":{"totalIngresos":700000,"totalEgresos":120000,"saldoNeto":580000},"desc":"Acumula ingresos, egresos y saldo neto correctamente"}]},{"id":"m5e4","num":4,"titulo":"5.4 Normalización de Estado: Indexar Arreglo por ID con .reduce()","contextoReact":"En aplicaciones grandes en React, convertimos un array [{ id: \"a1\", ... }] en un mapa { a1: { ... } } para acceder en tiempo O(1).","instrucciones":"Completa indexarPorId(entidades) usando .reduce() con valor inicial {} para retornar un objeto cuyas llaves sean entidad.id y cuyos valores sean el objeto entidad correspondiente.","inputEjemplo":"indexarPorId([{ id: \"p1\", nombre: \"Café\" }, { id: \"p2\", nombre: \"Cacao\" }])","outputEjemplo":"{ p1: { id: \"p1\", nombre: \"Café\" }, p2: { id: \"p2\", nombre: \"Cacao\" } }","starterCode":"function indexarPorId(entidades) {\n  // Usa .reduce((mapa, item) => ({ ...mapa, [item.id]: item }), {}):\n  \n}","buggyCode":"function indexarPorId(entidades) {\n  // 🐞 Bug: Usaron item.id literal como clave en lugar de propiedad computada [item.id]\n  return entidades.reduce((mapa, item) => ({ ...mapa, itemId: item }), {});\n}","pista":"Usa propiedad computada entre corchetes: return entidades.reduce((mapa, item) => ({ ...mapa, [item.id]: item }), {});","fnName":"indexarPorId","tests":[{"args":[[{"id":"p1","nombre":"Café"},{"id":"p2","nombre":"Cacao"}]],"expected":{"p1":{"id":"p1","nombre":"Café"},"p2":{"id":"p2","nombre":"Cacao"}},"desc":"Construye diccionario indexado por [item.id]"}]},{"id":"m5e5","num":5,"titulo":"5.5 Tu Primer Reducer Puro para useReducer en React","contextoReact":"El hook const [state, dispatch] = useReducer(carritoReducer, initialState) utiliza exactamente esta función pura.","instrucciones":"Completa carritoReducer(state = { items: [] }, action). Si action.type === \"AGREGAR\", retorna { ...state, items: [...state.items, action.payload] }. Si action.type === \"ELIMINAR\", filtra item.id !== action.payload. Si action.type === \"VACIAR\", retorna { ...state, items: [] }.","inputEjemplo":"carritoReducer({ items: [] }, { type: \"AGREGAR\", payload: { id: 1, nombre: \"Mouse\" } })","outputEjemplo":"{ items: [{ id: 1, nombre: \"Mouse\" }] }","starterCode":"function carritoReducer(state = { items: [] }, action) {\n  switch (action.type) {\n    case \"AGREGAR\":\n      // Retorna nuevo estado con action.payload agregado a items\n    case \"ELIMINAR\":\n      // Retorna nuevo estado sin el item cuyo id sea action.payload\n    case \"VACIAR\":\n      // Retorna nuevo estado con items: []\n    default:\n      return state;\n  }\n}","buggyCode":"function carritoReducer(state = { items: [] }, action) {\n  // 🐞 Bug: Muta state.items con .push() y retorna la misma referencia state\n  if (action.type === \"AGREGAR\") {\n    state.items.push(action.payload);\n    return state;\n  }\n  return state;\n}","pista":"En AGREGAR: return { ...state, items: [...state.items, action.payload] }; En ELIMINAR: return { ...state, items: state.items.filter(i => i.id !== action.payload) }; En VACIAR: return { ...state, items: [] };","fnName":"carritoReducer","tests":[{"customTest":"(fn) => {\n              const s0 = { items: [{ id: 1, nombre: \"Teclado\" }] };\n              const s1 = fn(s0, { type: \"AGREGAR\", payload: { id: 2, nombre: \"Mouse\" } });\n              const s2 = fn(s1, { type: \"ELIMINAR\", payload: 1 });\n              const s3 = fn(s2, { type: \"VACIAR\" });\n              return s1 !== s0 && s0.items.length === 1 && s1.items.length === 2 && s2.items.length === 1 && s2.items[0].id === 2 && s3.items.length === 0;\n            }","expected":true,"desc":"Procesa AGREGAR, ELIMINAR y VACIAR de manera 100% inmutable"}]}]},"lab6":{"id":"lab6","slideNum":30,"modulo":"Módulo 6 · Event Loop, Async/Await, Concurrencia y useEffect","titulo":"Laboratorio Dinámico 6: Promesas, Async/Await Defensivo, Promise.allSettled y Ciclo useEffect","descripcion":"Valida el manejo profesional de llamadas asíncronas, control de errores HTTP y concurrencia para que tus componentes en React nunca se congelen ni muestren pantallas blancas.","ejercicios":[{"id":"m6e1","num":1,"titulo":"6.1 Predicción del Event Loop (Call Stack vs Microtasks vs Macrotasks)","contextoReact":"Comprender que las Promesas (Microtasks) se ejecutan antes que setTimeout (Macrotasks) explica el orden de ejecución en React.","instrucciones":"Completa obtenerOrdenEventLoop() para que retorne el arreglo exacto con el orden en que se imprimen los 4 pasos de: 1) console.log(\"A-Sync\"), 2) setTimeout(() => \"B-Timeout\", 0), 3) Promise.resolve().then(() => \"C-Promesa\"), 4) console.log(\"D-Sync\").","inputEjemplo":"obtenerOrdenEventLoop()","outputEjemplo":"[\"A-Sync\", \"D-Sync\", \"C-Promesa\", \"B-Timeout\"]","starterCode":"function obtenerOrdenEventLoop() {\n  // Retorna el arreglo con los 4 strings en el orden exacto en que el motor JS los ejecuta:\n  // Strings: \"A-Sync\", \"B-Timeout\", \"C-Promesa\", \"D-Sync\"\n  return [\n    \n  ];\n}","buggyCode":"function obtenerOrdenEventLoop() {\n  // 🐞 Bug: El aprendiz creyó que el código se ejecuta en orden de lectura de arriba a abajo\n  return [\"A-Sync\", \"B-Timeout\", \"C-Promesa\", \"D-Sync\"];\n}","pista":"Primero van los 2 sincrónicos (\"A-Sync\", \"D-Sync\"), luego la Microtask (\"C-Promesa\") y de último la Macrotask (\"B-Timeout\").","fnName":"obtenerOrdenEventLoop","tests":[{"args":[],"expected":["A-Sync","D-Sync","C-Promesa","B-Timeout"],"desc":"Orden exacto: Call Stack -> Microtask Queue -> Macrotask Queue"}]},{"id":"m6e2","num":2,"titulo":"6.2 Creación de Promesa Simuladora de API SENA","contextoReact":"Para probar estados de carga (loading) y error en React sin depender del backend, creamos mocks asíncronos con new Promise.","instrucciones":"Completa consultarApiMock(datos, fallar = false) para que retorne una Promise. Si fallar es true, rechaza con reject(new Error(\"Error 500 SENA\")). Si es false, resuelve con resolve({ ok: true, data: datos }).","inputEjemplo":"await consultarApiMock([\"Aprendiz 1\"], false)","outputEjemplo":"{ ok: true, data: [\"Aprendiz 1\"] }","starterCode":"function consultarApiMock(datos, fallar = false) {\n  return new Promise((resolve, reject) => {\n    // Si fallar es true usa reject(new Error(\"Error 500 SENA\")), sino resolve({ ok: true, data: datos })\n    \n  });\n}","buggyCode":"function consultarApiMock(datos, fallar = false) {\n  return new Promise((resolve, reject) => {\n    // 🐞 Bug: Usaron resolve() incluso cuando fallar es true\n    if (fallar) resolve(\"Error 500 SENA\");\n    else resolve({ ok: true, data: datos });\n  });\n}","pista":"if (fallar) reject(new Error(\"Error 500 SENA\")); else resolve({ ok: true, data: datos });","fnName":"consultarApiMock","tests":[{"customTest":"async (fn) => {\n              const ok = await fn([\"A\"], false);\n              let errCapturado = \"\";\n              try { await fn(null, true); } catch (e) { errCapturado = e.message; }\n              return ok.ok === true && ok.data[0] === \"A\" && errCapturado === \"Error 500 SENA\";\n            }","expected":true,"desc":"Resuelve con { ok: true, data } y rechaza con Error(\"Error 500 SENA\") cuando fallar es true"}]},{"id":"m6e3","num":3,"titulo":"6.3 Pipeline Async/Await Defensivo con Try/Catch y Fallback","contextoReact":"En servicios consumidos por React, capturamos errores con try/catch y retornamos una estructura uniforme { exito, datos, error }.","instrucciones":"Completa cargarDatosSeguro(servicioAsync, fallback = []) usando async/await y try/catch. Si servicioAsync() resuelve, retorna { exito: true, datos: res.data, error: null }. Si lanza error, retorna { exito: false, datos: fallback, error: err.message }.","inputEjemplo":"await cargarDatosSeguro(async () => ({ data: [1, 2] }), [])","outputEjemplo":"{ exito: true, datos: [1, 2], error: null }","starterCode":"async function cargarDatosSeguro(servicioAsync, fallback = []) {\n  try {\n    // Llama a await servicioAsync() y retorna { exito: true, datos: ..., error: null }\n    \n  } catch (err) {\n    // Retorna { exito: false, datos: fallback, error: err.message }\n    \n  }\n}","buggyCode":"async function cargarDatosSeguro(servicioAsync, fallback = []) {\n  // 🐞 Bug: Olvidaron poner await antes de servicioAsync()\n  try {\n    const res = servicioAsync();\n    return { exito: true, datos: res.data, error: null };\n  } catch (err) {\n    return { exito: false, datos: fallback, error: err.message };\n  }\n}","pista":"const res = await servicioAsync(); return { exito: true, datos: res.data, error: null }; y en el catch: return { exito: false, datos: fallback, error: err.message };","fnName":"cargarDatosSeguro","tests":[{"customTest":"async (fn) => {\n              const r1 = await fn(async () => ({ data: [\"Café\"] }), []);\n              const r2 = await fn(async () => { throw new Error(\"Sin Red\"); }, [\"Cache\"]);\n              return r1.exito === true && r1.datos[0] === \"Café\" && r1.error === null && r2.exito === false && r2.datos[0] === \"Cache\" && r2.error === \"Sin Red\";\n            }","expected":true,"desc":"Maneja tanto la resolución exitosa como la captura de excepciones con fallback"}]},{"id":"m6e4","num":4,"titulo":"6.4 Concurrencia Resiliente con Promise.allSettled()","contextoReact":"Cuando un Dashboard en React consulta 3 endpoints en paralelo, Promise.allSettled evita que el fallo de un widget bloquee los demás.","instrucciones":"Completa sincronizarDashboard(promesas) usando await Promise.allSettled(promesas) para retornar { exitosos: [valores de las fulfilled], fallidos: [mensajes reason.message de las rejected] }.","inputEjemplo":"await sincronizarDashboard([Promise.resolve(\"Ventas OK\"), Promise.reject(new Error(\"Clima Caído\"))])","outputEjemplo":"{ exitosos: [\"Ventas OK\"], fallidos: [\"Clima Caído\"] }","starterCode":"async function sincronizarDashboard(promesas) {\n  const resultados = await Promise.allSettled(promesas);\n  // Separa los resultados con status === \"fulfilled\" (item.value) y \"rejected\" (item.reason.message):\n  \n}","buggyCode":"async function sincronizarDashboard(promesas) {\n  // 🐞 Bug: Promise.all lanza excepción apenas una sola promesa falla\n  const resultados = await Promise.all(promesas);\n  return { exitosos: resultados, fallidos: [] };\n}","pista":"Usa resultados.reduce((acc, r) => { if (r.status === \"fulfilled\") acc.exitosos.push(r.value); else acc.fallidos.push(r.reason.message); return acc; }, { exitosos: [], fallidos: [] });","fnName":"sincronizarDashboard","tests":[{"customTest":"async (fn) => {\n              const out = await fn([Promise.resolve(\"Métricas OK\"), Promise.reject(new Error(\"Error Clima\")), Promise.resolve(\"Usuarios OK\")]);\n              return out.exitosos.length === 2 && out.exitosos[0] === \"Métricas OK\" && out.fallidos.length === 1 && out.fallidos[0] === \"Error Clima\";\n            }","expected":true,"desc":"Clasifica promesas resueltas y rechazadas sin romper la ejecución"}]},{"id":"m6e5","num":5,"titulo":"6.5 Simulador de Estado de Carga para useEffect (loading / data / error)","contextoReact":"En React, todo consumo asíncrono en useEffect actualiza un estado con { cargando: false, datos, error } al finalizar.","instrucciones":"Completa ejecutarEfectoCarga(apiCall) para simular el estado final de un componente tras el useEffect: ejecuta await apiCall() en un try/catch. Si triunfa, retorna { cargando: false, datos: respuesta, error: null }. Si falla, retorna { cargando: false, datos: null, error: err.message }.","inputEjemplo":"await ejecutarEfectoCarga(async () => [{ id: 1, curso: \"React + Vite\" }])","outputEjemplo":"{ cargando: false, datos: [{ id: 1, curso: \"React + Vite\" }], error: null }","starterCode":"async function ejecutarEfectoCarga(apiCall) {\n  // Ejecuta await apiCall() con try/catch y retorna el estado final { cargando: false, datos, error }:\n  \n}","buggyCode":"async function ejecutarEfectoCarga(apiCall) {\n  // 🐞 Bug: Dejó cargando: true para siempre (spinner infinito en React)\n  try {\n    const datos = await apiCall();\n    return { cargando: true, datos, error: null };\n  } catch (err) {\n    return { cargando: true, datos: null, error: err.message };\n  }\n}","pista":"En ambos casos (try y catch), cargando debe pasar a false.","fnName":"ejecutarEfectoCarga","tests":[{"customTest":"async (fn) => {\n              const ok = await fn(async () => [\"React 19\"]);\n              const fail = await fn(async () => { throw new Error(\"Timeout 408\"); });\n              return ok.cargando === false && ok.datos[0] === \"React 19\" && ok.error === null && fail.cargando === false && fail.datos === null && fail.error === \"Timeout 408\";\n            }","expected":true,"desc":"Actualiza cargando: false tanto en éxito como en error (estilo finally en useEffect)"}]}]}};
     const TOTAL_SLIDES = 30;
     const STORAGE_KEY = 'adso_3314621_js_react_30_exercises_v1';
@@ -4146,15 +4187,27 @@ return {
       } catch (e) {}
     }
 
+    function escapeHtmlJs(str) {
+      return String(str ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
+
     function goToSlide(n) {
+      
       const target = Math.max(1, Math.min(TOTAL_SLIDES, Number(n) || 1));
       document.querySelectorAll('.slide-section').forEach(el => {
         el.classList.toggle('active', Number(el.getAttribute('data-slide')) === target);
       });
       currentSlide = target;
-      document.getElementById('slide-counter').textContent = currentSlide + ' / ' + TOTAL_SLIDES;
-      document.getElementById('slide-progress-bar').style.width = ((currentSlide / TOTAL_SLIDES) * 100).toFixed(2) + '%';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      const counterEl = document.getElementById('slide-counter');
+      if (counterEl) counterEl.textContent = currentSlide + ' / ' + TOTAL_SLIDES;
+      const barEl = document.getElementById('slide-progress-bar');
+      if (barEl) barEl.style.width = ((currentSlide / TOTAL_SLIDES) * 100).toFixed(2) + '%';
+      const scrollContainer = document.getElementById('main-scroll-container') || window;
+      if (scrollContainer.scrollTo) scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
+      
     }
 
     function nextSlide() {
@@ -4167,7 +4220,7 @@ return {
 
     function toggleIndexModal() {
       const modal = document.getElementById('index-modal');
-      modal.classList.toggle('hidden');
+      if (modal) modal.classList.toggle('hidden');
     }
 
     function toggleFullScreen() {
@@ -4198,21 +4251,24 @@ return {
       if (timerInterval) {
         clearInterval(timerInterval);
         timerInterval = null;
-        btn.textContent = 'Continuar';
+        if (btn) btn.textContent = 'Continuar';
       } else {
         timerInterval = setInterval(() => {
           timerSeconds++;
-          document.getElementById('timer-display').textContent = formatTime(timerSeconds);
+          const disp = document.getElementById('timer-display');
+          if (disp) disp.textContent = formatTime(timerSeconds);
         }, 1000);
-        btn.textContent = 'Pausar';
+        if (btn) btn.textContent = 'Pausar';
       }
     }
     function resetTimer() {
       if (timerInterval) clearInterval(timerInterval);
       timerInterval = null;
       timerSeconds = 0;
-      document.getElementById('timer-display').textContent = '00:00';
-      document.getElementById('timer-btn').textContent = 'Iniciar';
+      const disp = document.getElementById('timer-display');
+      if (disp) disp.textContent = '00:00';
+      const btn = document.getElementById('timer-btn');
+      if (btn) btn.textContent = 'Iniciar';
     }
 
     async function runTheoryDemo(slideNum) {
@@ -4266,7 +4322,7 @@ return {
 
       const hintBox = document.getElementById('ex-hint-box-' + labKey);
       hintBox.classList.add('hidden');
-      hintBox.innerHTML = '<strong>💡 Pista Pedagógica:</strong> ' + ex.pista;
+      hintBox.innerHTML = '<strong>💡 Pista Pedagógica:</strong> ' + escapeHtmlJs(ex.pista);
 
       editorEl.value = savedUserCode[ex.id] || ex.starterCode;
 
@@ -4281,7 +4337,7 @@ return {
 
       document.getElementById('ex-results-list-' + labKey).innerHTML =
         '<div class="p-3 rounded-xl bg-slate-50 text-slate-500 border border-slate-200">' +
-        'Completa la función <code>' + ex.fnName + '</code> y haz clic en <strong>"▶ Validar Código en Vivo"</strong>.' +
+        'Completa la función <code>' + escapeHtmlJs(ex.fnName) + '</code> y haz clic en <strong>"▶ Validar Código en Vivo"</strong>.' +
         '</div>';
     }
 
@@ -4336,7 +4392,7 @@ return {
         verdictBadge.textContent = '❌ Error de Sintaxis';
         resultsEl.innerHTML =
           '<div class="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-900 font-mono text-xs">' +
-          '<strong>❌ Error de sintaxis en tu código:</strong><br/>' + syntaxErr.message +
+          '<strong>❌ Error de sintaxis en tu código:</strong><br/>' + escapeHtmlJs(syntaxErr.message) +
           '</div>';
         return;
       }
@@ -4346,7 +4402,7 @@ return {
         verdictBadge.textContent = '❌ Función no encontrada';
         resultsEl.innerHTML =
           '<div class="p-3.5 rounded-xl bg-rose-50 border border-rose-200 text-rose-900 text-xs">' +
-          'No se encontró la función <code>' + ex.fnName + '</code>. Asegúrate de no cambiar su nombre.' +
+          'No se encontró la función <code>' + escapeHtmlJs(ex.fnName) + '</code>. Asegúrate de no cambiar su nombre.' +
           '</div>';
         return;
       }
@@ -4364,15 +4420,15 @@ return {
             if (passed) {
               cardsHtml.push(
                 '<div class="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950">' +
-                  '<div class="font-extrabold flex items-center justify-between"><span>✅ Caso ' + (tIdx + 1) + ': ' + test.desc + '</span><span>OK</span></div>' +
+                  '<div class="font-extrabold flex items-center justify-between"><span>✅ Caso ' + (tIdx + 1) + ': ' + escapeHtmlJs(test.desc) + '</span><span>OK</span></div>' +
                 '</div>'
               );
             } else {
               allPassed = false;
               cardsHtml.push(
                 '<div class="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-950">' +
-                  '<div class="font-extrabold">❌ Caso ' + (tIdx + 1) + ': ' + test.desc + '</div>' +
-                  '<div class="mt-1 font-mono text-[11px] text-rose-800">La validación personalizada retornó false. Verifica todos los requisitos del ejercicio.</div>' +
+                  '<div class="font-extrabold">❌ Caso ' + (tIdx + 1) + ': ' + escapeHtmlJs(test.desc) + '</div>' +
+                  '<div class="mt-1 font-mono text-[11px] text-rose-800">La validación retornó false. Verifica que cumplas la inmutabilidad y todos los requisitos del ejercicio.</div>' +
                 '</div>'
               );
             }
@@ -4400,18 +4456,18 @@ return {
           if (sameValue && immutableOk) {
             cardsHtml.push(
               '<div class="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-950">' +
-                '<div class="font-extrabold flex items-center justify-between"><span>✅ Caso ' + (tIdx + 1) + ': ' + test.desc + '</span><span>OK</span></div>' +
-                '<div class="mt-1 font-mono text-[11px] text-emerald-800">Retorno: ' + JSON.stringify(actual) + (shouldCheckImm ? ' · 🛡️ Inmutabilidad verificada' : '') + '</div>' +
+                '<div class="font-extrabold flex items-center justify-between"><span>✅ Caso ' + (tIdx + 1) + ': ' + escapeHtmlJs(test.desc) + '</span><span>OK</span></div>' +
+                '<div class="mt-1 font-mono text-[11px] text-emerald-800">Retorno: ' + escapeHtmlJs(JSON.stringify(actual)) + (shouldCheckImm ? ' · 🛡️ Inmutabilidad verificada' : '') + '</div>' +
               '</div>'
             );
           } else {
             allPassed = false;
             const reason = !immutableOk
               ? '⚠️ Mutaste el objeto/arreglo original o devolviste la misma referencia en memoria. En React debes clonar con Spread (...), .map() o .filter().'
-              : 'Esperado: ' + JSON.stringify(test.expected) + ' | Obtenido: ' + JSON.stringify(actual);
+              : 'Esperado: ' + escapeHtmlJs(JSON.stringify(test.expected)) + ' | Obtenido: ' + escapeHtmlJs(JSON.stringify(actual));
             cardsHtml.push(
               '<div class="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-950">' +
-                '<div class="font-extrabold">❌ Caso ' + (tIdx + 1) + ': ' + test.desc + '</div>' +
+                '<div class="font-extrabold">❌ Caso ' + (tIdx + 1) + ': ' + escapeHtmlJs(test.desc) + '</div>' +
                 '<div class="mt-1 font-mono text-[11px] text-rose-800">' + reason + '</div>' +
               '</div>'
             );
@@ -4420,11 +4476,11 @@ return {
           allPassed = false;
           const isFreezeError = /read only property|object is not extensible|Cannot assign to read only/i.test(runtimeErr.message);
           const msg = isFreezeError
-            ? '⚠️ ¡Mutación detectada! Intentaste modificar directamente el objeto/arreglo de entrada (' + runtimeErr.message + '). Crea una copia inmutable.'
-            : runtimeErr.message;
+            ? '⚠️ ¡Mutación detectada! Intentaste modificar directamente el objeto/arreglo de entrada (' + escapeHtmlJs(runtimeErr.message) + '). Crea una copia inmutable.'
+            : escapeHtmlJs(runtimeErr.message);
           cardsHtml.push(
             '<div class="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-950">' +
-              '<div class="font-extrabold">❌ Error en Caso ' + (tIdx + 1) + ': ' + test.desc + '</div>' +
+              '<div class="font-extrabold">❌ Error en Caso ' + (tIdx + 1) + ': ' + escapeHtmlJs(test.desc) + '</div>' +
               '<div class="mt-1 font-mono text-[11px] text-rose-800">' + msg + '</div>' +
             '</div>'
           );
@@ -4448,7 +4504,7 @@ return {
 
     function updateAllProgressBadges() {
       let totalSolved = 0;
-      Object.keys(LABS_DATA).forEach(labKey => {
+      Object.keys(LABS_DATA).forEach((labKey, idx) => {
         const lab = LABS_DATA[labKey];
         let labSolved = 0;
         lab.ejercicios.forEach(ex => {
@@ -4463,12 +4519,23 @@ return {
         const labText = document.getElementById('lab-progress-text-' + labKey);
         if (labText) labText.textContent = labSolved + ' / 5 Ejercicios Aprobados';
 
-        const homeBadge = document.getElementById('home-mod-badge-' + labKey);
-        if (homeBadge) homeBadge.textContent = labSolved + ' / 5 resueltos';
+        document.querySelectorAll('.mod-progress-badge-' + labKey).forEach(el => {
+          el.textContent = labSolved + ' / 5 resueltos';
+        });
+        const sbBadge = document.getElementById('sidebar-badge-' + labKey);
+        if (sbBadge) sbBadge.textContent = labSolved + '/5';
       });
 
       const globalBadge = document.getElementById('global-score-badge');
       if (globalBadge) globalBadge.textContent = totalSolved + ' / 30 Ejercicios';
+
+      const topBarText = document.getElementById('top-progress-text');
+      const topBarFill = document.getElementById('top-progress-bar');
+      if (topBarText && topBarFill) {
+        const pct = Math.round((totalSolved / 30) * 100);
+        topBarText.textContent = totalSolved + '/30 (' + pct + '%)';
+        topBarFill.style.width = Math.max(5, pct) + '%';
+      }
     }
 
     function exportProgressReport() {
@@ -4492,7 +4559,7 @@ return {
       a.click();
       URL.revokeObjectURL(url);
     }
-
+  
     window.addEventListener('DOMContentLoaded', () => {
       Object.keys(LABS_DATA).forEach(labKey => {
         selectLabExercise(labKey, 0);
